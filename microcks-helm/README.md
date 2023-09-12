@@ -1,4 +1,4 @@
-# Microcks
+# Microcks-Helm
 
 This chart bootstraps a new [Microcks](http://microcks.io) application using the [Helm](https://helm.sh) package manager.
 
