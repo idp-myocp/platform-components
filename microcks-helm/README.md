@@ -14,5 +14,5 @@ $ cd platform-components
 
 $ oc new-project microcks
 
-$ helm install microcks ./microcks-helm --namespace microcks
+$ helm install microcks ./microcks-helm --namespace microcks --set microcks.url=microcks.$(ocp ip).nip.io --set keycloak.url=keycloak.$(ocp ip).nip.io
 ```
