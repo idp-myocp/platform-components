@@ -16,3 +16,8 @@ $ oc new-project microcks
 
 $ helm install microcks ./microcks-helm --namespace microcks --set microcks.url=microcks.$(ocp dns) --set keycloak.url=keycloak.$(ocp dns)
 ```
+
+3 default users are available in the microcks instance.
+user with password microcks123,
+manager with password microcks123,
+admin with password microcks123
