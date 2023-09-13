@@ -18,6 +18,8 @@ $ helm install microcks ./microcks-helm --namespace microcks --set microcks.url=
 ```
 
 3 default users are available in the microcks instance.
+
+
 user with password microcks123,
 
 
