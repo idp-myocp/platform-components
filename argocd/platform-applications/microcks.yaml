@@ -12,11 +12,6 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
-  values: |
-    microcks:
-      url: microcks.apps.cluster-gf6zv.gf6zv.sandbox67.opentlc.com
-    keycloak:
-      url: keycloak.apps.cluster-gf6zv.gf6zv.sandbox67.opentlc.com
   syncPolicy:
     automated: 
       prune: true
