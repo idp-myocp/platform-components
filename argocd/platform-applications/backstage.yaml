@@ -10,11 +10,12 @@ spec:
     path: backstage-helm
     targetRevision: main
     helm:
-      values: | 
-        global.clusterRouterBase: apps.cluster-gf6zv.gf6zv.sandbox67.opentlc.com
+      parameters:
+        - name: "global.clusterRouterBase"
+          value: "apps.cluster-gf6zv.gf6zv.sandbox67.opentlc.com"
   destination:
     server: https://kubernetes.default.svc
-    namespace: openshift-gitops
+    namespace: argocd
   syncPolicy:
     automated: 
       prune: true

@@ -10,12 +10,14 @@ spec:
     path: microcks-helm
     targetRevision: main
     helm:
-      values: | 
-        microcks.url: microcks.apps.cluster-gf6zv.gf6zv.sandbox67.opentlc.com
-        keycloak.url: keycloak.apps.cluster-gf6zv.gf6zv.sandbox67.opentlc.com
+      parameters:
+        - name: "microcks.url"
+          value: "microcks.apps.cluster-gf6zv.gf6zv.sandbox67.opentlc.com"
+        - name: "keycloak.url"
+          value: "keycloak.apps.cluster-gf6zv.gf6zv.sandbox67.opentlc.com"
   destination:
     server: https://kubernetes.default.svc
-    namespace: openshift-gitops
+    namespace: argocd
   syncPolicy:
     automated: 
       prune: true
