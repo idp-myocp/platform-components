@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: root-application
-  namespace: default
+  namespace: backstage
 spec:
   project: default
   source:
@@ -11,7 +11,7 @@ spec:
     targetRevision: main
   destination:
     server: https://kubernetes.default.svc
-    namespace: argocd
+    namespace: backstage
   syncPolicy:
     automated: 
       prune: true
