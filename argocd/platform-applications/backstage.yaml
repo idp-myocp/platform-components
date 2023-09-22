@@ -9,12 +9,12 @@ spec:
     repoURL: https://github.com/57800-hydroquebec/platform-components.git
     path: backstage-helm
     targetRevision: main
-    helm:
-      values: | 
-        global.clusterRouterBase: apps.cluster-gf6zv.gf6zv.sandbox67.opentlc.com
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
+  values: | 
+    global:
+      clusterRouterBase: apps.cluster-gf6zv.gf6zv.sandbox67.opentlc.com
   syncPolicy:
     automated: 
       prune: true
