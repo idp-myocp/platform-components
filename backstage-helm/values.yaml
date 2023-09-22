@@ -1,6 +1,6 @@
 global:
   # -- Shorthand for users who do not want to specify a custom HOSTNAME. Used ONLY with the DEFAULT upstream.backstage.appConfig value and with OCP Route enabled.
-  clusterRouterBase: apps.example.com
+  clusterRouterBase: apps.cluster-gf6zv.gf6zv.sandbox67.opentlc.com
   # -- Custom hostname shorthand, overrides `global.clusterRouterBase`, `upstream.ingress.host`, `route.host`, and url values in `upstream.backstage.appConfig`
   host: ""
 
