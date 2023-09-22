@@ -39,11 +39,6 @@ upstream:
         secretKeyRef:
           key: postgres-password
           name: "{{ .Release.Name }}-postgresql"
-    - name: BACKSTAGE_SECRET
-      valueFrom:
-        secretKeyRef:
-          key: secret
-          name: "{{ .Release.Name }}-secret"
 
   postgresql:
     enabled: true
