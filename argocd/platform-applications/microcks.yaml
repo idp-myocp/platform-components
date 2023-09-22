@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: microcks
-  namespace: microcks
+  namespace: backstage
 spec:
   project: default
   source:
@@ -17,7 +17,7 @@ spec:
           value: "keycloak.apps.cluster-gf6zv.gf6zv.sandbox67.opentlc.com"
   destination:
     server: https://kubernetes.default.svc
-    namespace: microcks
+    namespace: backstage
   syncPolicy:
     automated: 
       prune: true
