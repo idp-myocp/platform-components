@@ -8,7 +8,13 @@ spec:
   source:
     repoURL: https://github.com/57800-hydroquebec/platform-components.git
     path: microcks-helm
-    targetRevision: main    
+    targetRevision: main
+    helm:
+      parameters:
+        - name: "microcks.url"
+          value: "microcks.apps.cluster-gf6zv.gf6zv.sandbox67.opentlc.com"
+        - name: "keycloak.url"
+          value: "keycloak.apps.cluster-gf6zv.gf6zv.sandbox67.opentlc.com"
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
