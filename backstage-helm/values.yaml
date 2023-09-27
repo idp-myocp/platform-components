@@ -75,7 +75,7 @@ upstream:
             key: postgres-password
             name: "{{ .Release.Name }}-postgresql"
   ingress:
-    host: "{{ .Values.global.host }}"
+    enabled: false
 
 
 # -- OpenShift Route parameters
