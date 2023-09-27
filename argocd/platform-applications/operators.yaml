@@ -1,21 +1,16 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: backstage
+  name: operators
   namespace: openshift-gitops
 spec:
   project: default
   source:
     repoURL: https://github.com/davgordo/platform-components.git
-    path: backstage-helm
+    path: operators
     targetRevision: gitops-scheme
-    helm:
-      parameters:
-        - name: "global.clusterRouterBase"
-          value: "apps.cluster-gf6zv.gf6zv.sandbox67.opentlc.com"
   destination:
     server: https://kubernetes.default.svc
-    namespace: developer-hub
   syncPolicy:
     automated: 
       prune: true

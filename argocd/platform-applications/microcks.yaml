@@ -2,13 +2,13 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: microcks
-  namespace: argocd
+  namespace: openshift-gitops
 spec:
   project: default
   source:
-    repoURL: https://github.com/57800-hydroquebec/platform-components.git
+    repoURL: https://github.com/davgordo/platform-components.git
     path: microcks-helm
-    targetRevision: main
+    targetRevision: gitops-scheme
     helm:
       parameters:
         - name: "microcks.url"
@@ -17,7 +17,7 @@ spec:
           value: "keycloak.apps.cluster-gf6zv.gf6zv.sandbox67.opentlc.com"
   destination:
     server: https://kubernetes.default.svc
-    namespace: argocd
+    namespace: microcks
   syncPolicy:
     automated: 
       prune: true

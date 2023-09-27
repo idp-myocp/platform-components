@@ -2,16 +2,16 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: root-application
-  namespace: argocd
+  namespace: openshift-gitops
 spec:
   project: default
   source:
-    repoURL: https://github.com/57800-hydroquebec/platform-components.git
+    repoURL: https://github.com/davgordo/platform-components.git
     path: argocd/platform-applications
-    targetRevision: main
+    targetRevision: gitops-scheme
   destination:
     server: https://kubernetes.default.svc
-    namespace: argocd
+    namespace: default
   syncPolicy:
     automated: 
       prune: true
