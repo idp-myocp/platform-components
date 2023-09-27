@@ -1,24 +1,23 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: root-application
+  name: platform-operators
   namespace: openshift-gitops
 spec:
   project: default
   source:
     repoURL: https://github.com/davgordo/platform-components.git
-    path: argocd/platform-applications
+    path: operators
     targetRevision: gitops-scheme
   destination:
     server: https://kubernetes.default.svc
-    namespace: default
   syncPolicy:
     automated: 
       prune: true
       selfHeal: true
     syncOptions:
       - RespectIgnoreDifferences=true
-      - ApplyOutOfSyncOnly=true       
+      - ApplyOutOfSyncOnly=true
     retry:
       limit: 0 # number of failed sync attempt retries; unlimited number of attempts if less than 0
       backoff:
