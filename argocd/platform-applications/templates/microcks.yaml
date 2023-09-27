@@ -12,9 +12,9 @@ spec:
     helm:
       parameters:
         - name: "microcks.url"
-          value: "microcks.apps.cluster-gf6zv.gf6zv.sandbox67.opentlc.com"
+          value: "microcks.apps.{{ .Values.clusterBaseUrl }}"
         - name: "keycloak.url"
-          value: "keycloak.apps.cluster-gf6zv.gf6zv.sandbox67.opentlc.com"
+          value: "keycloak.apps.{{ .Values.clusterBaseUrl }}"
   destination:
     server: https://kubernetes.default.svc
     namespace: microcks
