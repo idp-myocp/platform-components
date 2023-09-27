@@ -6,9 +6,13 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/davgordo/platform-components.git
+    repoURL: https://github.com/janus-api-idp/platform-components.git
     path: argocd/platform-applications
-    targetRevision: gitops-scheme
+    targetRevision: main
+    helm:
+      parameters:
+        - name: clusterBaseUrl
+          value: cluster-0a0a0.0a0a0.sandbox0000.opentlc.com
   destination:
     server: https://kubernetes.default.svc
     namespace: default

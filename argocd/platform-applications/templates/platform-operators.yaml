@@ -6,9 +6,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/davgordo/platform-components.git
+    repoURL: https://github.com/janus-api-idp/platform-components.git
     path: operators
-    targetRevision: gitops-scheme
+    targetRevision: main
   destination:
     server: https://kubernetes.default.svc
   syncPolicy:

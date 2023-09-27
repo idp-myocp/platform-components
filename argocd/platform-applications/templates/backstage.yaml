@@ -6,9 +6,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/davgordo/platform-components.git
+    repoURL: https://github.com/janus-api-idp/platform-components.git
     path: backstage-helm
-    targetRevision: gitops-scheme
+    targetRevision: main
     helm:
       parameters:
         - name: "global.clusterRouterBase"
@@ -25,8 +25,8 @@ spec:
       - ApplyOutOfSyncOnly=true
       - CreateNamespace=true
     retry:
-      limit: 0 # number of failed sync attempt retries; unlimited number of attempts if less than 0
+      limit: 0
       backoff:
-        duration: 5s # the amount to back off. Default unit is seconds, but could also be a duration (e.g. "2m", "1h")
-        factor: 2 # a factor to multiply the base duration after each failed retry
-        maxDuration: 10m # the maximum amount of time allowed for the backoff strategy
+        duration: 5s
+        factor: 2
+        maxDuration: 10m
