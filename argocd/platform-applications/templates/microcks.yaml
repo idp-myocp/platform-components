@@ -1,0 +1,34 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: microcks
+  namespace: openshift-gitops
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/janus-api-idp/platform-components.git
+    path: microcks-helm
+    targetRevision: main
+    helm:
+      parameters:
+        - name: "microcks.url"
+          value: "microcks.apps.{{ .Values.clusterBaseUrl }}"
+        - name: "keycloak.url"
+          value: "keycloak.apps.{{ .Values.clusterBaseUrl }}"
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: microcks
+  syncPolicy:
+    automated: 
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - RespectIgnoreDifferences=true
+      - ApplyOutOfSyncOnly=true
+      - CreateNamespace=true
+    retry:
+      limit: 0
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 10m

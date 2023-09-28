@@ -1,0 +1,9 @@
+apiVersion: operators.coreos.com/v1
+kind: OperatorGroup
+metadata:
+  name: microcks
+  namespace: microcks
+spec:
+  targetNamespaces:
+    - microcks
+  upgradeStrategy: Default

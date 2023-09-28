@@ -1,17 +1,21 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: root-application
-  namespace: argocd
+  name: platform-root
+  namespace: openshift-gitops
 spec:
   project: default
   source:
-    repoURL: https://github.com/57800-hydroquebec/platform-components.git
+    repoURL: https://github.com/janus-api-idp/platform-components.git
     path: argocd/platform-applications
     targetRevision: main
+    helm:
+      parameters:
+        - name: clusterBaseUrl
+          value: cluster-0a0a0.0a0a0.sandbox0000.opentlc.com
   destination:
     server: https://kubernetes.default.svc
-    namespace: argocd
+    namespace: default
   syncPolicy:
     automated: 
       prune: true

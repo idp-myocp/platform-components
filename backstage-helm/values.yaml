@@ -39,6 +39,12 @@ upstream:
         secretKeyRef:
           key: postgres-password
           name: "{{ .Release.Name }}-postgresql"
+    - name: CONFLUENCE_URL
+      value: changeme
+    - name: CONFLUENCE_USERNAME
+      value: changeme
+    - name: CONFLUENCE_PASSWORD
+      value: changeme
 
   postgresql:
     enabled: true
@@ -69,7 +75,7 @@ upstream:
             key: postgres-password
             name: "{{ .Release.Name }}-postgresql"
   ingress:
-    host: "{{ .Values.global.host }}"
+    enabled: false
 
 
 # -- OpenShift Route parameters

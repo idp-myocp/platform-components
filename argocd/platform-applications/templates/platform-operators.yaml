@@ -1,30 +1,23 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: microcks
-  namespace: argocd
+  name: platform-operators
+  namespace: openshift-gitops
 spec:
   project: default
   source:
-    repoURL: https://github.com/57800-hydroquebec/platform-components.git
-    path: microcks-helm
+    repoURL: https://github.com/janus-api-idp/platform-components.git
+    path: operators
     targetRevision: main
-    helm:
-      parameters:
-        - name: "microcks.url"
-          value: "microcks.apps.cluster-gf6zv.gf6zv.sandbox67.opentlc.com"
-        - name: "keycloak.url"
-          value: "keycloak.apps.cluster-gf6zv.gf6zv.sandbox67.opentlc.com"
   destination:
     server: https://kubernetes.default.svc
-    namespace: argocd
   syncPolicy:
     automated: 
       prune: true
       selfHeal: true
     syncOptions:
       - RespectIgnoreDifferences=true
-      - ApplyOutOfSyncOnly=true       
+      - ApplyOutOfSyncOnly=true
     retry:
       limit: 0 # number of failed sync attempt retries; unlimited number of attempts if less than 0
       backoff:
