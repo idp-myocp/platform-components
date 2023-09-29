@@ -1,2 +1,3 @@
 backstage-helm/charts/
 microcks-helm/charts/
+microcks-install-helm/charts/

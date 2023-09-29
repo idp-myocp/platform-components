@@ -1,0 +1,20 @@
+# Microcks installation configuration
+microcks:
+  version: "latest"  # Specify the desired Microcks version
+  replicas: 1
+
+postman:
+  replicas: 1
+
+# Configuration for Keycloak (SSO provider)
+keycloak:
+  install: true
+  persistent: true
+  volumeSize: 1Gi
+  replicas: 1
+
+mongodb:
+  install: true
+  persistent: true
+  volumeSize: 2Gi
+  replicas: 1
