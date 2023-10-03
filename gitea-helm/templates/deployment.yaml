@@ -22,7 +22,7 @@ spec:
         deploymentconfig: gitea
     spec:
       containers:
-      - image: ' '
+      - image: 'quay.io/gpte-devops-automation/gitea:latest'
         imagePullPolicy: Always
         livenessProbe:
           failureThreshold: 3
@@ -82,15 +82,3 @@ spec:
           name: gitea-config
         name: gitea-config
   test: false
-  triggers:
-  - type: ConfigChange
-  - imageChangeParams:
-      automatic: true
-      containerNames:
-        - gitea
-      from:
-        kind: ImageStreamTag
-        name: '{{ .Values.imagestream_name | default "gitea" }}:{{ .Values.imagestream_tag | default "latest" }}'
-        namespace: {{ .Release.Namespace }}
-      lastTriggeredImage: ''
-    type: ImageChange

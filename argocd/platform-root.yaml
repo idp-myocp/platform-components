@@ -12,7 +12,7 @@ spec:
     helm:
       parameters:
         - name: clusterBaseUrl
-          value: cluster-0a0a0.0a0a0.sandbox0000.opentlc.com
+          value: cluster-cgmdz.cgmdz.sandbox3146.opentlc.com
   destination:
     server: https://kubernetes.default.svc
     namespace: default

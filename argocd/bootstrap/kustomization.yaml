@@ -3,4 +3,3 @@ kind: Kustomization
 resources:
   - https://github.com/redhat-cop/gitops-catalog/openshift-gitops-operator/operator/overlays/latest?ref=main
   - rolebinding.yaml
-  - platform-root.yaml
