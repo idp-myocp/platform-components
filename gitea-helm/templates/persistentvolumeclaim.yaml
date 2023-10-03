@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  {{ template "app.labels" }}
+  name: "{{ .Release.Name | default "gitea" }}-repositories"
+{{- if .Values.pvcPolicyKeep }}
+  annotations:
+    "helm.sh/resource-policy": keep
+{{- end }}
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: {{ .Values.repository_size | default "5Gi" | quote }}
