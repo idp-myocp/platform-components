@@ -1,20 +1,19 @@
-apiVersion: apps.openshift.io/v1
-kind: DeploymentConfig
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  annotations:
-    template.alpha.openshift.io/wait-for-ready: 'true'
   {{ template "app.labels" }}
   name: {{ .Values.db.name | default "gitea-db" | quote }}
 spec:
   replicas: 1
   selector:
-    name: {{ .Values.db.name | default "gitea-db" | quote }}
+    matchLabels:
+      app: {{ .Values.db.name | default "gitea-db" | quote }}
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        name: {{ .Values.db.name | default "gitea-db" | quote }}
+        app: {{ .Values.db.name | default "gitea-db" | quote }}
     spec:
       containers:
         - resources:
@@ -58,22 +57,10 @@ spec:
           volumeMounts:
             - mountPath: /var/lib/pgsql/data
               name: {{ .Values.db.name | default "gitea-db" | quote }}
-          image: ' '
+          image: 'registry.redhat.io/rhel8/postgresql-13:latest'
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       volumes:
         - name: {{ .Values.db.name | default "gitea-db" | quote }}
           persistentVolumeClaim:
             claimName: {{ .Values.db.name | default "gitea-db" | quote }}
-  triggers:
-    - imageChangeParams:
-        automatic: true
-        containerNames:
-          - postgresql
-        from:
-          kind: ImageStreamTag
-          name: '{{ .Values.db.imagestream_name | default "postgresql" }}:{{ .Values.db.imagestream_tag | default "latest" }}'
-          namespace: {{ .Values.db.imagestream_namespace | default "openshift" }}
-        lastTriggeredImage: ''
-      type: ImageChange
-    - type: ConfigChange
