@@ -1,25 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  generation: 1
   {{ template "app.labels" }}
   name: {{ template "app.name" }}
 spec:
   replicas: 1
   revisionHistoryLimit: 10
   selector:
-    app: {{ template "app.name" }}
-    deploymentconfig: {{ template "app.name" }}
+    matchLabels:
+      app: {{ template "app.name" }}
   strategy:
-    activeDeadlineSeconds: 21600
-    resources: {}
     type: Recreate
   template:
     metadata:
-      creationTimestamp: null
       labels:
-        app: gitea
-        deploymentconfig: gitea
+        app: {{ template "app.name" }}
     spec:
       containers:
       - image: 'quay.io/gpte-devops-automation/gitea:latest'
@@ -81,4 +76,3 @@ spec:
             path: app.ini
           name: gitea-config
         name: gitea-config
-  test: false

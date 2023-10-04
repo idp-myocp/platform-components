@@ -10,7 +10,6 @@ Default labels for resources associated with Gitea
     app.kubernetes.io/instance: gitea
     app.kubernetes.io/name: gitea
     app.kubernetes.io/part-of: gitea
-    generator: helm
 {{- end }}
 
 {{/*

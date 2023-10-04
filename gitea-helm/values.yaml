@@ -3,8 +3,7 @@
 # Declare variables to be passed into your templates.
 
 ## You MUST specify a hostname
-hostname: gitea.apps.cluster-cgmdz.cgmdz.sandbox3146.opentlc.com
-
+hostname: gitea.apps.cluster-4zjw7.4zjw7.sandbox1304.opentlc.com
 ## Override where the gitea container image is pulling from
 # imagestream_from: quay.io/gpte-devops-automation/gitea:latest
 # imagestream_name: gitea
@@ -28,11 +27,3 @@ db:
   name: gitea-db
   user: gitea
   size: 1Gi
-  imagestream_name: postgresql
-  imagestream_namespace: openshift
-  imagestream_tag: latest
-#
-## Create an ImageStream to override  where the postgresql container is pulled from, for disconnected clusters which
-## for disconnected clusters which lack the default ImageStreams. Note that the value has to be indented under db:
-## (recommended to also change imagestream_name)
-#   imagestream_from: ""

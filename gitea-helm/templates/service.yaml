@@ -13,6 +13,5 @@ spec:
     targetPort: 3000
   selector:
     app: {{ template "app.name" }}
-    deploymentconfig: {{ template "app.name" }}
   sessionAffinity: None
   type: ClusterIP
