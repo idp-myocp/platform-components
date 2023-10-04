@@ -11,7 +11,7 @@ upstream:
   backstage:
     image:
       registry: quay.io
-      repository: maximilianb/backstage-showcase
+      repository: image-registry.openshift-image-registry.svc:5000/developer-hub/backstage-showcase
       tag: latest
     command: []
     # FIXME (tumido): USE POSTGRES_PASSWORD and POSTGRES_USER instead of POSTGRES_ADMIN_PASSWORD
