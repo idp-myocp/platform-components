@@ -8,6 +8,3 @@ spec:
     name: self-signer
   commonName: "ca.self-signer.cert-manager"
   isCA: true
-  keyEncoding: pkcs8
-  searchdomains: 
-  - cluster.local
