@@ -33,6 +33,11 @@ upstream:
           connection:
             password: ${POSTGRESQL_ADMIN_PASSWORD}
             user: postgres
+      catalog:
+        locations:
+          - type: url
+            target: https://github.com/janus-idp/software-templates/blob/main/showcase-templates.yaml
+
     extraEnvVars:
     - name: POSTGRESQL_ADMIN_PASSWORD
       valueFrom:
