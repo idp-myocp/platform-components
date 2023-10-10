@@ -12,7 +12,9 @@ spec:
     helm:
       parameters:
         - name: clusterBaseUrl
-          value: cluster-cgmdz.cgmdz.sandbox3146.opentlc.com
+          value: cluster-xxxxx.xxxxx.sandbox0000.opentlc.com
+        - name: "github.token"
+          value: ghp_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
   destination:
     server: https://kubernetes.default.svc
     namespace: default

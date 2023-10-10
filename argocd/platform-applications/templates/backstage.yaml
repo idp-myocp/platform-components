@@ -13,6 +13,8 @@ spec:
       parameters:
         - name: "global.clusterRouterBase"
           value: "apps.{{ .Values.clusterBaseUrl }}"
+        - name: "github.token"
+          value: "{{ .Values.backstage.githubToken }}"
   destination:
     server: https://kubernetes.default.svc
     namespace: developer-hub
