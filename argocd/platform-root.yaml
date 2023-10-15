@@ -12,7 +12,7 @@ spec:
     helm:
       parameters:
         - name: clusterBaseUrl
-          value: cluster-7mpns.7mpns.sandbox1039.opentlc.com
+          value: cluster-xxxxx.xxxxx.sandbox0000.opentlc.com
         - name: "github.token"
           value: ghp_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
   destination:
