@@ -31,9 +31,16 @@ upstream:
         cors:
           origin: 'https://{{- include "janus-idp.hostname" . }}'
         database:
+          client: pg
           connection:
             password: ${POSTGRESQL_ADMIN_PASSWORD}
             user: postgres
+            host: postgres-postgresql #Matches with the host of the deployed postgresql instance
+            port: 5432
+            ssl:
+              ca: ${CA_CERT}
+              require: true
+              rejectUnauthorized: true
 
       integrations:
         github:
@@ -63,6 +70,11 @@ upstream:
         secretKeyRef:
           key: token
           name: "{{ .Release.Name }}-github"
+    - name: CA_CERT
+      valueFrom:
+        secretKeyRef:
+          key: ca.crt
+          name: "postgres-postgresql-crt" # Should match with the name of the secret where the CA for the postgresql server is stored
     - name: CONFLUENCE_URL
       value: changeme
     - name: CONFLUENCE_USERNAME
@@ -71,7 +83,7 @@ upstream:
       value: changeme
 
   postgresql:
-    enabled: true
+    enabled: false #Disabled when using an external connection
     postgresqlDataDir: /var/lib/pgsql/data/userdata
     image:
       registry: quay.io
