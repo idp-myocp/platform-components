@@ -35,7 +35,7 @@ upstream:
           connection:
             password: ${POSTGRESQL_ADMIN_PASSWORD}
             user: postgres
-            host: postgres-postgresql #Matches with the host of the deployed postgresql instance
+            host: "{{ .Release.Name }}-db-postgresql" #Matches with the host of the deployed postgresql instance
             port: 5432
             ssl:
               ca: ${CA_CERT}
