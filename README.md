@@ -16,6 +16,25 @@ GitOps manifest for an Internal Developer Platform built on OpenShift
 
 ## Configuration Guide
 
+Below are the critical configuration parameters that require user-provided values.
+
+### GitOps Source
+
+There are many ArgoCD Applications deployed in this demo which reference git repositories. You may be working in a fork of this repository, and perhaps in a feature branch. You can configure the location of your GitHub organization as well as your target git ref in one place.
+
+Example:
+
+```yaml
+  source:
+    ...
+    helm:
+      parameters:
+        - name: gitOrg
+          value: https://github.com/ghuser01
+        - name: gitRef
+          value: some-feature
+```
+
 ### Cluster Base URL
 
 Several platform component charts need to know the base domain of the OpenShift router. Typically, this includes everything after `*.apps.` for any given OpenShift Route host, assuming a wildcard domain is in use.
@@ -31,7 +50,7 @@ Example:
           value: cluster-xxxxx.xxxxx.sandbox0000.opentlc.com
 ```
 
-### GitHub Access Token
+### Backstage GitHub Access Token
 
 In order to read GitHub URLs, Backstage needs an GitHub access token provided. An access token can be generated using the GitHub UI under `Settings -> Developer Settings -> Personal Access Tokens`.
 
@@ -42,6 +61,6 @@ Example:
     ...
     helm:
       parameters:
-        - name: "github.token"
+        - name: "backstage.githubToken"
           value: ghp_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 ```

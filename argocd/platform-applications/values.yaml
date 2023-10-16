@@ -1,4 +1,10 @@
+# See argocd/platform-root.yaml for overrides
+
+gitOrg: https://github.com/janus-api-idp
+gitRef: main
 clusterBaseUrl: example.cluster.com
 
 backstage:
   githubToken: replaceme
+  db:
+    adminPassword: replaceme
