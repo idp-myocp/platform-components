@@ -11,10 +11,16 @@ spec:
     targetRevision: main
     helm:
       parameters:
+        - name: gitOrg
+          value: https://github.com/janus-api-idp
+        - name: gitRef
+          value: main
         - name: clusterBaseUrl
           value: cluster-xxxxx.xxxxx.sandbox0000.opentlc.com
-        - name: "github.token"
+        - name: "backstage.githubToken"
           value: ghp_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+        - name: "backstage.db.adminPassword"
+          value: backstage-postgres-admin-passwd
   destination:
     server: https://kubernetes.default.svc
     namespace: default

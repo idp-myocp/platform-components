@@ -35,7 +35,7 @@ upstream:
           connection:
             password: ${POSTGRESQL_ADMIN_PASSWORD}
             user: postgres
-            host: postgres-postgresql #Matches with the host of the deployed postgresql instance
+            host: "{{ .Release.Name }}-db-postgresql" #Matches with the host of the deployed postgresql instance
             port: 5432
             ssl:
               ca: ${CA_CERT}
@@ -64,17 +64,17 @@ upstream:
       valueFrom:
         secretKeyRef:
           key: postgres-password
-          name: "{{ .Release.Name }}-postgresql"
+          name: "{{ .Release.Name }}-db-postgresql"
     - name: GITHUB_TOKEN
       valueFrom:
         secretKeyRef:
           key: token
-          name: "{{ .Release.Name }}-github"
+          name: "{{ .Release.Name }}-git-auth"
     - name: CA_CERT
       valueFrom:
         secretKeyRef:
           key: ca.crt
-          name: "postgres-postgresql-crt" # Should match with the name of the secret where the CA for the postgresql server is stored
+          name: "{{ .Release.Name }}-db-postgresql-crt" # Should match with the name of the secret where the CA for the postgresql server is stored
     - name: CONFLUENCE_URL
       value: changeme
     - name: CONFLUENCE_USERNAME
@@ -84,32 +84,7 @@ upstream:
 
   postgresql:
     enabled: false #Disabled when using an external connection
-    postgresqlDataDir: /var/lib/pgsql/data/userdata
-    image:
-      registry: quay.io
-      repository: fedora/postgresql-15
-      tag: latest
-    auth:
-      secretKeys:
-        adminPasswordKey: postgres-password
-        userPasswordKey: password
-    primary:
-      securityContext:
-        enabled: false
-      podSecurityContext:
-        enabled: false
-      containerSecurityContext:
-        enabled: false
-      persistence:
-        enabled: true
-        size: 1Gi
-        mountPath: /var/lib/pgsql/data
-      extraEnvVars:
-      - name: POSTGRESQL_ADMIN_PASSWORD
-        valueFrom:
-          secretKeyRef:
-            key: postgres-password
-            name: "{{ .Release.Name }}-postgresql"
+
   ingress:
     enabled: false
 

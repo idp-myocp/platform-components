@@ -1,17 +1,21 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: postgres
+  name: backstage-db
   namespace: openshift-gitops
 spec:
   project: default
   source:
-    repoURL: https://github.com/janus-api-idp/platform-components.git
+    repoURL: "{{ .Values.gitOrg }}/platform-components.git"
     path: postgresql-helm
-    targetRevision: main
+    targetRevision: "{{ .Values.gitRef }}"
+    helm:
+      parameters:
+        - name: "global.postgresql.auth.postgresPassword"
+          value: "{{ .Values.backstage.db.adminPassword }}"
   destination:
     server: https://kubernetes.default.svc
-    namespace: postgres
+    namespace: developer-hub
   syncPolicy:
     automated: 
       prune: true
