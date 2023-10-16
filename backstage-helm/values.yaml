@@ -64,7 +64,7 @@ upstream:
       valueFrom:
         secretKeyRef:
           key: postgres-password
-          name: "{{ .Release.Name }}-postgresql"
+          name: "{{ .Release.Name }}-db-postgresql"
     - name: GITHUB_TOKEN
       valueFrom:
         secretKeyRef:
@@ -74,7 +74,7 @@ upstream:
       valueFrom:
         secretKeyRef:
           key: ca.crt
-          name: "postgres-postgresql-crt" # Should match with the name of the secret where the CA for the postgresql server is stored
+          name: "{{ .Release.Name }}-db-postgresql-crt" # Should match with the name of the secret where the CA for the postgresql server is stored
     - name: CONFLUENCE_URL
       value: changeme
     - name: CONFLUENCE_USERNAME
