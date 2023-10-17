@@ -9,6 +9,10 @@ spec:
     repoURL: "{{ .Values.gitOrg }}/platform-components.git"
     path: keycloak-helm
     targetRevision: "{{ .Values.gitRef }}"
+    helm:
+      parameters:
+        - name: clusterBaseUrl
+          value: "{{ .Values.clusterBaseUrl }}"
   destination:
     server: https://kubernetes.default.svc
     namespace: keycloak
