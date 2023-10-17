@@ -52,7 +52,7 @@ postman:
   replicas: 1
 
 keycloak:
-  install: true
+  install: false
   realm: microcks
   # Now that we switched to newer version of Keycloak-X, default url does not contain '/auth' path
   # If you use an older external Keycloak instance, url must include the '/auth' path

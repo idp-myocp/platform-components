@@ -14,7 +14,7 @@ spec:
         - name: "microcks.url"
           value: "microcks.apps.{{ .Values.clusterBaseUrl }}"
         - name: "keycloak.url"
-          value: "keycloak.apps.{{ .Values.clusterBaseUrl }}"
+          value: "keycloak-keycloak.apps.{{ .Values.clusterBaseUrl }}"
   destination:
     server: https://kubernetes.default.svc
     namespace: microcks
