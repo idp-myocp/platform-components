@@ -1,20 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: microcks
+  name: microcks-db
   namespace: openshift-gitops
 spec:
   project: default
   source:
     repoURL: "{{ .Values.gitOrg }}/platform-components.git"
-    path: microcks-helm
+    path: mongodb-helm
     targetRevision: "{{ .Values.gitRef }}"
-    helm:
-      parameters:
-        - name: "microcks.url"
-          value: "microcks.apps.{{ .Values.clusterBaseUrl }}"
-        - name: "keycloak.url"
-          value: "keycloak-keycloak.apps.{{ .Values.clusterBaseUrl }}/auth"
   destination:
     server: https://kubernetes.default.svc
     namespace: microcks
