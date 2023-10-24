@@ -129,7 +129,7 @@ upstream:
 
 service:
   ports:
-    - backend: 4180
+    backend: 4180
 
 # -- OpenShift Route parameters
 route:
