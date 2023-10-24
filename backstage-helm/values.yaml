@@ -61,7 +61,7 @@ upstream:
         providers:
           keycloakOrg:
             default:
-              baseUrl: https://keycloak-keycloak.apps.cluster-btg8p.dynamic.opentlc.com/
+              baseUrl: https://keycloak-keycloak.apps.cluster-btg8p.dynamic.opentlc.com/auth
               loginRealm: backstage
               realm: backstage
               clientId: backstage
@@ -130,6 +130,13 @@ upstream:
 service:
   ports:
     backend: 4180
+    targetPort: oauth-proxy
+
+keycloak:
+  baseUrl: https://keycloak-keycloak.apps.cluster-btg8p.dynamic.opentlc.com/auth
+  realm: backstage
+  clientId: backstage
+  clientSecret: CjrBujp80h6lWt7PEesM4tklZaqTfPal
 
 # -- OpenShift Route parameters
 route:
