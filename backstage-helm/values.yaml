@@ -66,6 +66,10 @@ upstream:
               realm: backstage
               clientId: backstage
               clientSecret: CjrBujp80h6lWt7PEesM4tklZaqTfPal
+              schedule:
+                frequency: { minutes: 1 }
+                timeout: { minutes: 1 }
+                initialDelay: { seconds: 15 }
       auth:
         environment: production
         providers:
@@ -131,12 +135,6 @@ service:
   ports:
     backend: 4180
     targetPort: oauth-proxy
-
-keycloak:
-  baseUrl: https://keycloak-keycloak.apps.cluster-btg8p.dynamic.opentlc.com/auth
-  realm: backstage
-  clientId: backstage
-  clientSecret: CjrBujp80h6lWt7PEesM4tklZaqTfPal
 
 # -- OpenShift Route parameters
 route:
