@@ -127,6 +127,9 @@ upstream:
   ingress:
     enabled: false
 
+service:
+  ports:
+    backend: 4180
 
 # -- OpenShift Route parameters
 route:
