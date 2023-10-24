@@ -58,6 +58,14 @@ upstream:
             target: https://github.com/janus-idp/backstage-showcase/blob/main/catalog-entities/all.yaml
           - type: url
             target: https://github.com/janus-api-idp/software-templates/blob/main/template-index.yaml
+        providers:
+          keycloakOrg:
+            default:
+              baseUrl: https://keycloak-keycloak.apps.cluster-btg8p.dynamic.opentlc.com/
+              loginRealm: backstage
+              realm: backstage
+              clientId: backstage
+              clientSecret: CjrBujp80h6lWt7PEesM4tklZaqTfPal
       auth:
         environment: production
         providers:
@@ -87,16 +95,6 @@ upstream:
       value: changeme
     - name: CONFLUENCE_PASSWORD
       value: changeme
-    - name: 'APP_CONFIG_catalog_providers_keycloakOrg_default_baseUrl'
-      value: 'https://keycloak-keycloak.apps.cluster-btg8p.dynamic.opentlc.com/'
-    - name: 'APP_CONFIG_catalog_providers_keycloakOrg_default_loginRealm'
-      value: 'backstage'
-    - name: 'APP_CONFIG_catalog_providers_keycloakOrg_default_realm'
-      value: 'backstage'
-    - name: 'APP_CONFIG_catalog_providers_keycloakOrg_default_clientId'
-      value: 'backstage'
-    - name: 'APP_CONFIG_catalog_providers_keycloakOrg_default_clientSecret'
-      value: 'CjrBujp80h6lWt7PEesM4tklZaqTfPal'
     extraContainers:
     - name: oauth2-proxy
       env:
