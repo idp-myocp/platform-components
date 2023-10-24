@@ -8,17 +8,17 @@ spec:
   source:
     repoURL: https://github.com/janus-api-idp/platform-components.git
     path: argocd/platform-applications
-    targetRevision: main
+    targetRevision: security
     helm:
       parameters:
         - name: gitOrg
           value: https://github.com/janus-api-idp
         - name: gitRef
-          value: main
+          value: security
         - name: clusterBaseUrl
-          value: cluster-xxxxx.xxxxx.sandbox0000.opentlc.com
+          value: cluster-btg8p.dynamic.opentlc.com
         - name: "backstage.githubToken"
-          value: ghp_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+          value: 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
         - name: "backstage.db.adminPassword"
           value: backstage-postgres-admin-passwd
   destination:
