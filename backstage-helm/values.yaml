@@ -58,6 +58,12 @@ upstream:
             target: https://github.com/janus-idp/backstage-showcase/blob/main/catalog-entities/all.yaml
           - type: url
             target: https://github.com/janus-api-idp/software-templates/blob/main/template-index.yaml
+      auth:
+        environment: production
+        providers:
+          oauth2Proxy: {}
+      enabled:
+        keycloak: true
 
     extraEnvVars:
     - name: POSTGRESQL_ADMIN_PASSWORD
@@ -81,6 +87,31 @@ upstream:
       value: changeme
     - name: CONFLUENCE_PASSWORD
       value: changeme
+    extraContainers:
+    - name: oauth2-proxy
+      env:
+        - name: OAUTH2_PROXY_CLIENT_ID
+          value: 'backstage'
+        - name: OAUTH2_PROXY_CLIENT_SECRET
+          value: 'CjrBujp80h6lWt7PEesM4tklZaqTfPal'
+        - name: OAUTH2_PROXY_COOKIE_SECRET
+          value: 'fksdZJWUhzlfGw3Ve6POYc2jmjZogjCh'
+        - name: OAUTH2_PROXY_OIDC_ISSUER_URL
+          value: 'https://keycloak-keycloak.apps.cluster-btg8p.dynamic.opentlc.com/auth/realms/backstage'
+        - name: OAUTH2_PROXY_SSL_INSECURE_SKIP_VERIFY
+          value: 'true'
+      ports:
+        - name: oauth2-proxy
+          containerPort: 4180
+          protocol: TCP
+      imagePullPolicy: IfNotPresent
+      image: 'quay.io/oauth2-proxy/oauth2-proxy:latest'
+      args:
+        - '--provider=oidc'
+        - '--email-domain=*'
+        - '--upstream=http://localhost:7007'
+        - '--http-address=0.0.0.0:4180'
+        - '--skip-provider-button'
 
   postgresql:
     enabled: false #Disabled when using an external connection
