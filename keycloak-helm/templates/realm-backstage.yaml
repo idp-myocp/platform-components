@@ -3,13 +3,13 @@ kind: KeycloakRealm
 metadata:
   labels:
     app: backstage
-  name: {{ default "backstage" .Values.keycloak.realm-backstage.name }}
+  name: {{ default "backstage" .Values.keycloak.backstageRealm.name }}
 spec:
   realm:
-    id: {{ default "backstage" .Values.keycloak.realm-backstage.name }}
-    realm: {{ default "backstage" .Values.keycloak.realm-backstage.name }}
+    id: {{ default "backstage" .Values.keycloak.backstageRealm.name }}
+    realm: {{ default "backstage" .Values.keycloak.backstageRealm.name }}
     enabled: true
-    displayName: {{ default "backstage" .Values.keycloak.realm-backstage.displayName }}
+    displayName: {{ default "backstage" .Values.keycloak.backstageRealm.displayName }}
   instanceSelector:
     matchLabels:
       app: keycloak
