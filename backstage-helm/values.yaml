@@ -189,4 +189,4 @@ keycloak:
   backstageClient:
     id: backstage
     secret: my-secret
-    oidc-issuer-url: "{{ .Values.keycloak.baseUrl }}/auth/realms/backstage"
+    oidc-issuer-url: "https://keycloak-keycloak.apps.{{ .Values.global.clusterRouterBase }}/auth/realms/backstage"
