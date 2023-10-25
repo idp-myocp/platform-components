@@ -134,7 +134,7 @@ upstream:
   service:
     ports:
       backend: 4180
-      targetPort: oauth-proxy
+      targetPort: oauth2-proxy
 
   postgresql:
     enabled: false #Disabled when using an external connection
