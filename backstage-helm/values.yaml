@@ -61,11 +61,11 @@ upstream:
         providers:
           keycloakOrg:
             default:
-              baseUrl: https://keycloak-keycloak.apps.cluster-btg8p.dynamic.opentlc.com/auth
-              loginRealm: backstage
-              realm: backstage
-              clientId: backstage
-              clientSecret: CjrBujp80h6lWt7PEesM4tklZaqTfPal
+              baseUrl: {{ .Values.keycloak.baseUrl }}
+              loginRealm: {{ .Values.keycloak.backstage-client.id }}
+              realm: {{ .Values.keycloak.backstage-client.id }}
+              clientId: {{ .Values.keycloak.backstage-client.id }}
+              clientSecret: {{ .Values.keycloak.backstage-client.secret }}
               schedule:
                 frequency: { minutes: 1 }
                 timeout: { minutes: 1 }
@@ -103,13 +103,13 @@ upstream:
     - name: oauth2-proxy
       env:
         - name: OAUTH2_PROXY_CLIENT_ID
-          value: 'backstage'
+          value: {{ .Values.keycloak.backstage-client.id }}
         - name: OAUTH2_PROXY_CLIENT_SECRET
-          value: 'CjrBujp80h6lWt7PEesM4tklZaqTfPal'
+          value: {{ .Values.keycloak.backstage-client.secret }}
         - name: OAUTH2_PROXY_COOKIE_SECRET
           value: 'fksdZJWUhzlfGw3Ve6POYc2jmjZogjCh'
         - name: OAUTH2_PROXY_OIDC_ISSUER_URL
-          value: 'https://keycloak-keycloak.apps.cluster-btg8p.dynamic.opentlc.com/auth/realms/backstage'
+          value: {{ .Values.keycloak.backstage-client.oidc-issuer-url }}
         - name: OAUTH2_PROXY_SSL_INSECURE_SKIP_VERIFY
           value: 'true'
       ports:
@@ -125,16 +125,16 @@ upstream:
         - '--http-address=0.0.0.0:4180'
         - '--skip-provider-button'
 
+  service:
+    ports:
+      backend: 4180
+      targetPort: oauth-proxy
+
   postgresql:
     enabled: false #Disabled when using an external connection
 
   ingress:
     enabled: false
-
-service:
-  ports:
-    backend: 4180
-    targetPort: oauth-proxy
 
 # -- OpenShift Route parameters
 route:
@@ -183,3 +183,10 @@ route:
 
 github:
   token: changeme
+
+keycloak:
+  baseUrl: "https://keycloak-keycloak.apps.{{ .Values.global.clusterRouterBase }}"
+  backstage-client:
+    id: backstage
+    secret: my-secret
+    oidc-issuer-url: "{{ .Values.keycloak.baseUrl }}/auth/realms/backstage"

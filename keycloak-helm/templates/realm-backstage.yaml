@@ -1,0 +1,15 @@
+apiVersion: keycloak.org/v1alpha1
+kind: KeycloakRealm
+metadata:
+  labels:
+    app: backstage
+  name: {{ default "backstage" .Values.keycloak.realm-backstage.name }}
+spec:
+  realm:
+    id: {{ default "backstage" .Values.keycloak.realm-backstage.name }}
+    realm: {{ default "backstage" .Values.keycloak.realm-backstage.name }}
+    enabled: true
+    displayName: {{ default "backstage" .Values.keycloak.realm-backstage.displayName }}
+  instanceSelector:
+    matchLabels:
+      app: keycloak

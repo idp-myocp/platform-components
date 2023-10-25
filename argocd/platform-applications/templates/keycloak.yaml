@@ -13,6 +13,8 @@ spec:
       parameters:
         - name: clusterBaseUrl
           value: "{{ .Values.clusterBaseUrl }}"
+        - name: "keycloak.backstage-client.secret"
+          value: "{{ .Values.keycloak.backstage-client.secret }}"
   destination:
     server: https://kubernetes.default.svc
     namespace: keycloak

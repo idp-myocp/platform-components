@@ -21,6 +21,8 @@ spec:
           value: ghp_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
         - name: "backstage.db.adminPassword"
           value: backstage-postgres-admin-passwd
+        - name: keycloak.backstage-client.secret
+          value: CjrBujp80h6lWt7PEesM4tklZaqTfPal
   destination:
     server: https://kubernetes.default.svc
     namespace: default

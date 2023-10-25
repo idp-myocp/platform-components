@@ -1,1 +1,4 @@
 clusterBaseUrl: example.cluster.com
+keycloak:
+  backstage-client:
+    secret: my-secret
