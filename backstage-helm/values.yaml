@@ -61,7 +61,7 @@ upstream:
         providers:
           keycloakOrg:
             default:
-              baseUrl: {{ .Values.keycloak.baseUrl }}
+              baseUrl: "https://keycloak-keycloak.apps.{{ .Values.global.clusterRouterBase }}"
               loginRealm: {{ .Values.keycloak.backstageClient.id }}
               realm: {{ .Values.keycloak.backstageClient.id }}
               clientId: {{ .Values.keycloak.backstageClient.id }}
@@ -185,7 +185,6 @@ github:
   token: changeme
 
 keycloak:
-  baseUrl: "https://keycloak-keycloak.apps.{{ .Values.global.clusterRouterBase }}"
   backstageClient:
     id: backstage
     secret: my-secret
