@@ -115,7 +115,7 @@ upstream:
         - name: OAUTH2_PROXY_COOKIE_SECRET
           value: 'fksdZJWUhzlfGw3Ve6POYc2jmjZogjCh'
         - name: OAUTH2_PROXY_OIDC_ISSUER_URL
-          value: "{{ .Values.global.keycloak.prefixBaseUrl }}{{ .Values.global.clusterRouterBase }}"
+          value: "{{ .Values.global.keycloak.prefixBaseUrl }}{{ .Values.global.clusterRouterBase }}{{ .Values.global.keycloak.backstageClient.oidcIssuerUrlSuffix }}"
         - name: OAUTH2_PROXY_SSL_INSECURE_SKIP_VERIFY
           value: 'true'
       ports:
