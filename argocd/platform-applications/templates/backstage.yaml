@@ -15,7 +15,7 @@ spec:
           value: "apps.{{ .Values.clusterBaseUrl }}"
         - name: "github.token"
           value: "{{ .Values.backstage.githubToken }}"
-        - name: "keycloak.backstageClient.secret"
+        - name: "global.keycloak.backstageClient.secret"
           value: "{{ .Values.keycloak.backstageClient.secret }}"
   destination:
     server: https://kubernetes.default.svc

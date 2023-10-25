@@ -4,7 +4,7 @@ global:
   # -- Custom hostname shorthand, overrides `global.clusterRouterBase`, `upstream.ingress.host`, `route.host`, and url values in `upstream.backstage.appConfig`
   host: ""
   keycloak:
-    prefixBaseUrl: "https://keycloak-keycloak.apps."
+    prefixBaseUrl: "https://keycloak-keycloak."
     backstageClient:
       id: "backstage"
       secret: my-secret
@@ -67,7 +67,7 @@ upstream:
         providers:
           keycloakOrg:
             default:
-              baseUrl: "{{ .Values.global.keycloak.prefixBaseUrl }}{{ .Values.global.clusterRouterBase }}"
+              baseUrl: "{{ .Values.global.keycloak.prefixBaseUrl }}{{ .Values.global.clusterRouterBase }}/auth"
               loginRealm: "{{ .Values.global.keycloak.backstageClient.id }}"
               realm: "{{ .Values.global.keycloak.backstageClient.id }}"
               clientId: "{{ .Values.global.keycloak.backstageClient.id }}"
