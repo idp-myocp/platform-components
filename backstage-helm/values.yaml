@@ -62,10 +62,10 @@ upstream:
           keycloakOrg:
             default:
               baseUrl: {{ .Values.keycloak.baseUrl }}
-              loginRealm: {{ .Values.keycloak.backstage-client.id }}
-              realm: {{ .Values.keycloak.backstage-client.id }}
-              clientId: {{ .Values.keycloak.backstage-client.id }}
-              clientSecret: {{ .Values.keycloak.backstage-client.secret }}
+              loginRealm: {{ .Values.keycloak.backstageClient.id }}
+              realm: {{ .Values.keycloak.backstageClient.id }}
+              clientId: {{ .Values.keycloak.backstageClient.id }}
+              clientSecret: {{ .Values.keycloak.backstageClient.secret }}
               schedule:
                 frequency: { minutes: 1 }
                 timeout: { minutes: 1 }
@@ -103,13 +103,13 @@ upstream:
     - name: oauth2-proxy
       env:
         - name: OAUTH2_PROXY_CLIENT_ID
-          value: {{ .Values.keycloak.backstage-client.id }}
+          value: {{ .Values.keycloak.backstageClient.id }}
         - name: OAUTH2_PROXY_CLIENT_SECRET
-          value: {{ .Values.keycloak.backstage-client.secret }}
+          value: {{ .Values.keycloak.backstageClient.secret }}
         - name: OAUTH2_PROXY_COOKIE_SECRET
           value: 'fksdZJWUhzlfGw3Ve6POYc2jmjZogjCh'
         - name: OAUTH2_PROXY_OIDC_ISSUER_URL
-          value: {{ .Values.keycloak.backstage-client.oidc-issuer-url }}
+          value: {{ .Values.keycloak.backstageClient.oidc-issuer-url }}
         - name: OAUTH2_PROXY_SSL_INSECURE_SKIP_VERIFY
           value: 'true'
       ports:
@@ -186,7 +186,7 @@ github:
 
 keycloak:
   baseUrl: "https://keycloak-keycloak.apps.{{ .Values.global.clusterRouterBase }}"
-  backstage-client:
+  backstageClient:
     id: backstage
     secret: my-secret
     oidc-issuer-url: "{{ .Values.keycloak.baseUrl }}/auth/realms/backstage"

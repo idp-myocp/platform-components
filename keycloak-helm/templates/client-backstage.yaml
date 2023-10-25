@@ -1,7 +1,7 @@
 apiVersion: keycloak.org/v1alpha1
 kind: KeycloakClient
 metadata:
-  name: {{ default "backstage" .Values.keycloak.client-backstage.name }}
+  name: {{ default "backstage" .Values.keycloak.backstageClient.name }}
   labels:
     app: backstage
 spec:
@@ -14,9 +14,9 @@ spec:
       - query-users
       - view-users
   client:
-    clientId: {{ default "backstage" .Values.keycloak.client-backstage.name }}
+    clientId: {{ default "backstage" .Values.keycloak.backstageClient.name }}
     clientAuthenticatorType: client-secret
-    secret: {{ .Values.keycloak.backstage-client.secret }}
+    secret: {{ .Values.keycloak.backstageClient.secret }}
     standardFlowEnabled: true
     directAccessGrantsEnabled: true
     implicitFlowEnabled: false
