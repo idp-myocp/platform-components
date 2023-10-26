@@ -9,3 +9,14 @@ spec:
   externalAccess:
     enabled: True
   profile: RHSSO
+  keycloakDeploymentSpec:
+    experimental:
+      env:
+        - name: SSO_IMPORT_FILE
+          value: /tmp/realms/realms.json
+      volumes:
+        items:
+          - configMaps:
+            - realm-import
+            mountPath: /tmp/realms
+            name: "realm-import"

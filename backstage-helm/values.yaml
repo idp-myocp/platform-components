@@ -3,6 +3,12 @@ global:
   clusterRouterBase: app.example.com
   # -- Custom hostname shorthand, overrides `global.clusterRouterBase`, `upstream.ingress.host`, `route.host`, and url values in `upstream.backstage.appConfig`
   host: ""
+  keycloak:
+    prefixBaseUrl: "https://keycloak-keycloak."
+    backstageClient:
+      id: "backstage"
+      secret: my-secret
+      oidcIssuerUrlSuffix: "/auth/realms/backstage"
 
 # -- Upstream Backstage [chart configuration](https://github.com/backstage/charts/blob/main/charts/backstage/values.yaml)
 # @default -- Use Openshift compatible settings
@@ -58,6 +64,24 @@ upstream:
             target: https://github.com/janus-idp/backstage-showcase/blob/main/catalog-entities/all.yaml
           - type: url
             target: https://github.com/janus-api-idp/software-templates/blob/main/template-index.yaml
+        providers:
+          keycloakOrg:
+            default:
+              baseUrl: "{{ .Values.global.keycloak.prefixBaseUrl }}{{ .Values.global.clusterRouterBase }}/auth"
+              loginRealm: "{{ .Values.global.keycloak.backstageClient.id }}"
+              realm: "{{ .Values.global.keycloak.backstageClient.id }}"
+              clientId: "{{ .Values.global.keycloak.backstageClient.id }}"
+              clientSecret: "{{ .Values.global.keycloak.backstageClient.secret }}"
+              schedule:
+                frequency: { minutes: 1 }
+                timeout: { minutes: 1 }
+                initialDelay: { seconds: 15 }
+      auth:
+        environment: production
+        providers:
+          oauth2Proxy: {}
+      enabled:
+        keycloak: true
 
     extraEnvVars:
     - name: POSTGRESQL_ADMIN_PASSWORD
@@ -81,13 +105,42 @@ upstream:
       value: changeme
     - name: CONFLUENCE_PASSWORD
       value: changeme
+    extraContainers:
+    - name: "oauth2-proxy"
+      env:
+        - name: OAUTH2_PROXY_CLIENT_ID
+          value: "{{ .Values.global.keycloak.backstageClient.id }}"
+        - name: OAUTH2_PROXY_CLIENT_SECRET
+          value: "{{ .Values.global.keycloak.backstageClient.secret }}"
+        - name: OAUTH2_PROXY_COOKIE_SECRET
+          value: 'fksdZJWUhzlfGw3Ve6POYc2jmjZogjCh'
+        - name: OAUTH2_PROXY_OIDC_ISSUER_URL
+          value: "{{ .Values.global.keycloak.prefixBaseUrl }}{{ .Values.global.clusterRouterBase }}{{ .Values.global.keycloak.backstageClient.oidcIssuerUrlSuffix }}"
+        - name: OAUTH2_PROXY_SSL_INSECURE_SKIP_VERIFY
+          value: 'true'
+      ports:
+        - name: "oauth2-proxy"
+          containerPort: 4180
+          protocol: TCP
+      imagePullPolicy: IfNotPresent
+      image: "quay.io/oauth2-proxy/oauth2-proxy:latest"
+      args:
+        - '--provider=oidc'
+        - '--email-domain=*'
+        - '--upstream=http://localhost:7007'
+        - '--http-address=0.0.0.0:4180'
+        - '--skip-provider-button'
+
+  service:
+    ports:
+      backend: 4180
+      targetPort: oauth2-proxy
 
   postgresql:
     enabled: false #Disabled when using an external connection
 
   ingress:
     enabled: false
-
 
 # -- OpenShift Route parameters
 route:
