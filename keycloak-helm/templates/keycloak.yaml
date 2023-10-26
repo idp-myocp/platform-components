@@ -19,3 +19,4 @@ spec:
           - configMaps:
             - realm-backstage
             mountPath: /tmp/realms
+            name: "realm-import"
