@@ -9,3 +9,13 @@ spec:
   externalAccess:
     enabled: True
   profile: RHSSO
+  keycloakDeploymentSpec:
+    experimental:
+      env:
+        - name: SSO_IMPORT_FILE
+          value: /tmp/realms/realm-backstage.json
+      volumes:
+        items:
+          - configMaps:
+            - realm-backstage
+            mountPath: /tmp/realms
