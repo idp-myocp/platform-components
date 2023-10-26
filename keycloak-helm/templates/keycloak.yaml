@@ -13,10 +13,10 @@ spec:
     experimental:
       env:
         - name: SSO_IMPORT_FILE
-          value: /tmp/realms/realm-backstage.json
+          value: /tmp/realms/realms.json
       volumes:
         items:
           - configMaps:
-            - realm-backstage
+            - realm-import
             mountPath: /tmp/realms
             name: "realm-import"
