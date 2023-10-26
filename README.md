@@ -64,3 +64,21 @@ Example:
         - name: "backstage.githubToken"
           value: ghp_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 ```
+
+### RH SSO Authentication
+
+This setup is configured for RH SSO authentication.  The following users and groups will be created and can be used to login.  All have the password of `letmein`.  The keycloak org data sync is enabled and should sync the users and groups in backstage.
+
+#### Users
+
+- user-dev-1
+- user-dev-2
+- user-ops-1
+- user-ops-2
+- backstage-admin
+
+#### Groups
+
+- Developers
+- Operators
+- backstage-admins
