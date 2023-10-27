@@ -10,5 +10,5 @@ backstage:
     adminPassword: replaceme
 
 keycloak:
-  backstage:
-    clientSecret: replaceme
+  backstageClient:
+    secret: replaceme
