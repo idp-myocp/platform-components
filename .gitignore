@@ -1,4 +1,5 @@
 backstage-helm/charts/
+backstage-helm/Chart.yaml
 microcks-helm/charts/
 microcks-install-helm/charts/
 postgresql-helm/charts/
