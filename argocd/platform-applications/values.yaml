@@ -8,3 +8,7 @@ backstage:
   githubToken: replaceme
   db:
     adminPassword: replaceme
+
+keycloak:
+  backstage:
+    clientSecret: replaceme
