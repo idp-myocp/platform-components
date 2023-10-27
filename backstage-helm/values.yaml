@@ -76,11 +76,46 @@ upstream:
                 frequency: { minutes: 1 }
                 timeout: { minutes: 1 }
                 initialDelay: { seconds: 15 }
+          github:
+            systems:
+              organization: 'janus-api-idp' # string
+              catalogPath: '/systems/*.yaml' # string
+              filters:
+                branch: 'main' # string
+                repository: 'demo-systems' # Regex
+              schedule: # optional
+                # supports cron, ISO duration, "human duration" as used in code
+                frequency: { minutes: 1 }
+                # supports ISO duration, "human duration" as used in code
+                timeout: { minutes: 1 }
+            components:
+              organization: 'janus-api-idp' # string
+              catalogPath: '/catalog-info.yaml' # string
+              filters:
+                branch: 'master' # string
+                repository: '.*' # Regex
+              schedule: # optional
+                # supports cron, ISO duration, "human duration" as used in code
+                frequency: { minutes: 1 }
+                # supports ISO duration, "human duration" as used in code
+                timeout: { minutes: 1 }
+            apis:
+              organization: 'janus-api-idp' # string
+              catalogPath: '/catalog-info.yaml' # string
+              filters:
+                branch: 'master' # string
+                repository: '.*' # Regex
+              schedule: # optional
+                # supports cron, ISO duration, "human duration" as used in code
+                frequency: { minutes: 1 }
+                # supports ISO duration, "human duration" as used in code
+                timeout: { minutes: 1 }
       auth:
         environment: production
         providers:
           oauth2Proxy: {}
       enabled:
+        github: true
         keycloak: true
 
     extraEnvVars:
