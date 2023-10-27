@@ -629,8 +629,8 @@ data:
           "alwaysDisplayInConsole" : false,
           "clientAuthenticatorType" : "client-secret",
           "secret" : "CjrBujp80h6lWt7PEesM4tklZaqTfPal",
-          "redirectUris" : [ "https://backstage-developer-hub.apps.cluster-b2njn.dynamic.opentlc.com/oauth2/callback" ],
-          "webOrigins" : [ "https://backstage-developer-hub.apps.cluster-b2njn.dynamic.opentlc.com" ],
+          "redirectUris" : [ "https://backstage-developer-hub.apps.{{ .Values.clusterBaseUrl }}/oauth2/callback" ],
+          "webOrigins" : [ "https://backstage-developer-hub.apps.{{ .Values.clusterBaseUrl }}" ],
           "notBefore" : 0,
           "bearerOnly" : false,
           "consentRequired" : false,
@@ -2121,7 +2121,7 @@ data:
             "enabled": true,
             "publicClient": true,
             "redirectUris": [
-              "https://microcks-microcks.apps.cluster-tv9cn.tv9cn.sandbox140.opentlc.com/*"
+              "https://microcks-microcks.apps.{{ .Values.clusterBaseUrl }}/*"
             ],
             "webOrigins": [
               "+"
