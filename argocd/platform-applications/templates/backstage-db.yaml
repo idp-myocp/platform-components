@@ -13,6 +13,8 @@ spec:
       parameters:
         - name: "global.postgresql.auth.postgresPassword"
           value: "{{ .Values.backstage.db.adminPassword }}"
+        - name: "tls.certificatesSecret"
+          value: "backstage-db-postgresql-tls"
   destination:
     server: https://kubernetes.default.svc
     namespace: developer-hub

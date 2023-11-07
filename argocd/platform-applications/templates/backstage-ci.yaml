@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: "{{ .Values.gitOrg }}/backstage-showcase.git"
+    repoURL: "https://github.com/janus-api-idp/backstage-showcase.git"
     path: .tekton
     targetRevision: main
   destination:

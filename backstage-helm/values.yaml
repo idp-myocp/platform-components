@@ -133,7 +133,7 @@ upstream:
       valueFrom:
         secretKeyRef:
           key: ca.crt
-          name: "{{ .Release.Name }}-db-postgresql-crt" # Should match with the name of the secret where the CA for the postgresql server is stored
+          name: "{{ .Release.Name }}-db-postgresql-tls" # Should match with the name of the secret where the CA for the postgresql server is stored
     - name: CONFLUENCE_URL
       value: changeme
     - name: CONFLUENCE_USERNAME
