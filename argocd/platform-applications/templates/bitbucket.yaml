@@ -1,21 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: gitea
+  name: bitbucket
   namespace: openshift-gitops
 spec:
   project: default
   source:
     repoURL: "{{ .Values.gitOrg }}/platform-components.git"
-    path: gitea-helm
+    path: bitbucket-helm
     targetRevision: "{{ .Values.gitRef }}"
-    helm:
-      parameters:
-        - name: hostname
-          value: "gitea.apps.{{ .Values.clusterBaseUrl }}"
   destination:
     server: https://kubernetes.default.svc
-    namespace: gitea
+    namespace: bitbucket
   syncPolicy:
     automated: 
       prune: true

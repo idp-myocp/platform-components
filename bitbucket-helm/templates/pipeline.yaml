@@ -1,0 +1,51 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: bitbucket-build
+spec:
+  description: |
+    This pipeline clones a git repo, builds a Docker image with Buildah and
+    pushes it to a registry
+  params:
+    - default: 'https://github.com/janus-api-idp/bitbucket.git'
+      name: gitRepositoryUrl
+      type: string
+    - default: master
+      name: gitRevision
+      type: string
+    - default: >-
+        image-registry.openshift-image-registry.svc:5000/bitbucket/bitbucket:latest
+      name: imageUrl
+      type: string
+    - default: ./Dockerfile
+      name: dockerfilePath
+      type: string
+  tasks:
+    - name: fetch-source
+      params:
+        - name: url
+          value: $(params.gitRepositoryUrl)
+        - name: revision
+          value: $(params.gitRevision)
+      taskRef:
+        kind: ClusterTask
+        name: git-clone
+      workspaces:
+        - name: output
+          workspace: shared-data
+    - name: build-push
+      params:
+        - name: IMAGE
+          value: $(params.imageUrl)
+        - name: DOCKERFILE
+          value: $(params.dockerfilePath)
+      runAfter:
+        - fetch-source
+      taskRef:
+        kind: ClusterTask
+        name: buildah
+      workspaces:
+        - name: source
+          workspace: shared-data
+  workspaces:
+    - name: shared-data

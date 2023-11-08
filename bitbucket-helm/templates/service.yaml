@@ -1,0 +1,11 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: bitbucket
+spec:
+  ports:
+    - protocol: TCP
+      port: 7990
+      targetPort: 7990
+  selector:
+    app: bitbucket
