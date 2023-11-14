@@ -1,23 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: microcks
+  name: systems
   namespace: openshift-gitops
 spec:
   project: default
   source:
-    repoURL: "{{ .Values.gitOrg }}/platform-components.git"
-    path: microcks-helm
-    targetRevision: "{{ .Values.gitRef }}"
-    helm:
-      parameters:
-        - name: "microcks.url"
-          value: "microcks-microcks.apps.{{ .Values.clusterBaseUrl }}"
-        - name: "keycloak.url"
-          value: "keycloak-keycloak.apps.{{ .Values.clusterBaseUrl }}/auth"
+    repoURL: "https://github.com/janus-api-idp/demo-systems.git"
+    path: argoapps
+    targetRevision: main
   destination:
     server: https://kubernetes.default.svc
-    namespace: microcks
+    namespace: openshift-gitops
   syncPolicy:
     automated: 
       prune: true
