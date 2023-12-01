@@ -1,7 +1,0 @@
-clusterBaseUrl: example.cluster.com
-keycloak:
-  backstageRealm:
-    name: backstage
-    displayName: backstage
-  backstageClient:
-    secret: my-secret

@@ -6,19 +6,19 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/janus-api-idp/platform-components.git
+    repoURL: https://github.com/idp-myocp/platform-components.git
     path: argocd/platform-applications
     targetRevision: main
     helm:
       parameters:
         - name: gitOrg
-          value: https://github.com/janus-api-idp
+          value: https://github.com/idp-myocp
         - name: gitRef
           value: main
         - name: clusterBaseUrl
-          value: cluster-xxxxx.xxxxx.sandbox0000.opentlc.com
+          value: home.myocp.net
         - name: "backstage.githubToken"
-          value: ghp_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+          value: 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
         - name: "backstage.db.adminPassword"
           value: backstage-postgres-admin-passwd
         - name: "keycloak.backstageClient.secret"
