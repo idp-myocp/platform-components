@@ -16,9 +16,9 @@ spec:
         - name: gitRef
           value: main
         - name: clusterBaseUrl
-          value: home.myocp.net
+          value: XXX.XXXX.XXXXX
         - name: "backstage.githubToken"
-          value: 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
+          value: ghp_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
         - name: "backstage.db.adminPassword"
           value: backstage-postgres-admin-passwd
         - name: "keycloak.backstageClient.secret"
