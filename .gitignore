@@ -3,3 +3,4 @@ backstage-helm/Chart.lock
 microcks-helm/charts/
 microcks-install-helm/charts/
 postgresql-helm/charts/
+*-local.yaml
