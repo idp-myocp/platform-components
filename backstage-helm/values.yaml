@@ -11,6 +11,11 @@ global:
       secret: my-secret
       oidcIssuerUrl: "https://sso.myocp.net/realms/OpenShift"
 
+dynamic:
+      plugins:
+      - package: ./dynamic-plugins/dist/immobiliarelabs-backstage-plugin-gitlab-backend-dynamic
+        disabled: true
+
 # -- Upstream Backstage [chart configuration](https://github.com/backstage/charts/blob/main/charts/backstage/values.yaml)
 # @default -- Use Openshift compatible settings
 upstream:
@@ -56,7 +61,19 @@ upstream:
         github:
           - host: github.com
             token: ${GITHUB_TOKEN}
-
+        # Plugin: GitLab
+        gitlab:
+          - host: ${GITLAB_HOST}
+            token: ${GITLAB_TOKEN}
+            apiBaseUrl: ${GITLAB_API_BASE_URL}
+        # Plugin: Azure DevOps
+        azure:
+          - host: dev.azure.com
+            token: ${AZURE_TOKEN}
+      azureDevOps:
+          host: dev.azure.com
+          token: ${AZURE_TOKEN}
+          organization: ${AZURE_ORG}
       catalog:
         import: 
           entityFilename: catalog-info.yaml
@@ -105,9 +122,6 @@ upstream:
         environment: production
         providers:
           oauth2Proxy: {}
-      enabled:
-        github: true
-        keycloak: true
 
     extraEnvVars:
     - name: POSTGRESQL_ADMIN_PASSWORD
