@@ -11,6 +11,11 @@ global:
       secret: my-secret
       oidcIssuerUrl: "https://sso.myocp.net/realms/OpenShift"
 
+dynamic:
+      plugins:
+      - package: ./dynamic-plugins/dist/immobiliarelabs-backstage-plugin-gitlab-backend-dynamic
+        disabled: true
+
 # -- Upstream Backstage [chart configuration](https://github.com/backstage/charts/blob/main/charts/backstage/values.yaml)
 # @default -- Use Openshift compatible settings
 upstream:
@@ -213,18 +218,3 @@ route:
 github:
   token: changeme
 
-enabled:
-  kubernetes: false
-  techdocs: false
-  argocd: false
-  sonarqube: false
-  keycloak: true
-  ocm: false
-  github: true
-  githubOrg: false
-  gitlab: false
-  azureDevOps: false
-  jenkins: false
-  permission: false
-  azureAd: false
-  bitbucketDiscovery: false
