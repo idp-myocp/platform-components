@@ -61,7 +61,19 @@ upstream:
         github:
           - host: github.com
             token: ${GITHUB_TOKEN}
-
+        # Plugin: GitLab
+        gitlab:
+          - host: ${GITLAB_HOST}
+            token: ${GITLAB_TOKEN}
+            apiBaseUrl: ${GITLAB_API_BASE_URL}
+        # Plugin: Azure DevOps
+        azure:
+          - host: dev.azure.com
+            token: ${AZURE_TOKEN}
+      azureDevOps:
+          host: dev.azure.com
+          token: ${AZURE_TOKEN}
+          organization: ${AZURE_ORG}
       catalog:
         import:
           entityFilename: catalog-info.yaml
