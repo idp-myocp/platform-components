@@ -59,6 +59,9 @@ upstream:
         gitlab:
           - host: gitlab.com
             token: ${GITLAB_TOKEN}
+        azureDevOps:
+          - host: azureDevOps.com
+            token: ${GITLAB_TOKEN}
 
       catalog:
         import:
