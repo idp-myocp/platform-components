@@ -4,11 +4,12 @@ global:
   # -- Custom hostname shorthand, overrides `global.clusterRouterBase`, `upstream.ingress.host`, `route.host`, and url values in `upstream.backstage.appConfig`
   host: ""
   keycloak:
-    prefixBaseUrl: "https://keycloak-keycloak."
+    prefixBaseUrl: "https://sso.myocp.net"
     backstageClient:
       id: "backstage"
+      realm: OpenShift
       secret: my-secret
-      oidcIssuerUrlSuffix: "/auth/realms/backstage"
+      oidcIssuerUrl: "https://sso.myocp.net/realms/OpenShift"
 
 # -- Upstream Backstage [chart configuration](https://github.com/backstage/charts/blob/main/charts/backstage/values.yaml)
 # @default -- Use Openshift compatible settings
@@ -67,9 +68,9 @@ upstream:
         providers:
           keycloakOrg:
             default:
-              baseUrl: "{{ .Values.global.keycloak.prefixBaseUrl }}{{ .Values.global.clusterRouterBase }}/auth"
+              baseUrl: "{{ .Values.global.keycloak.prefixBaseUrl }}"
               loginRealm: "{{ .Values.global.keycloak.backstageClient.id }}"
-              realm: "{{ .Values.global.keycloak.backstageClient.id }}"
+              realm: "{{ .Values.global.keycloak.backstageClient.realm }}"
               clientId: "{{ .Values.global.keycloak.backstageClient.id }}"
               clientSecret: "{{ .Values.global.keycloak.backstageClient.secret }}"
               schedule:
@@ -137,7 +138,7 @@ upstream:
         - name: OAUTH2_PROXY_COOKIE_SECRET
           value: 'fksdZJWUhzlfGw3Ve6POYc2jmjZogjCh'
         - name: OAUTH2_PROXY_OIDC_ISSUER_URL
-          value: "{{ .Values.global.keycloak.prefixBaseUrl }}{{ .Values.global.clusterRouterBase }}{{ .Values.global.keycloak.backstageClient.oidcIssuerUrlSuffix }}"
+          value: "{{ .Values.global.keycloak.backstageClient.oidcIssuerUrl }}"
         - name: OAUTH2_PROXY_SSL_INSECURE_SKIP_VERIFY
           value: 'true'
       ports:
