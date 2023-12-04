@@ -215,3 +215,18 @@ route:
 
 github:
   token: changeme
+enabled:
+  kubernetes: false
+  techdocs: false
+  argocd: false
+  sonarqube: false
+  keycloak: true
+  ocm: false
+  github: true
+  githubOrg: false
+  gitlab: false
+  azureDevOps: false
+  jenkins: false
+  permission: false
+  azureAd: false
+  bitbucketDiscovery: false
