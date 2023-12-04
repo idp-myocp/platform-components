@@ -56,12 +56,6 @@ upstream:
         github:
           - host: github.com
             token: ${GITHUB_TOKEN}
-        gitlab:
-          - host: gitlab.com
-            token: ${GITLAB_TOKEN}
-        azureDevOps:
-          - host: azureDevOps.com
-            token: ${GITLAB_TOKEN}
 
       catalog:
         import:
@@ -114,7 +108,6 @@ upstream:
       enabled:
         github: true
         keycloak: true
-        gitlab: false
 
     extraEnvVars:
     - name: POSTGRESQL_ADMIN_PASSWORD
