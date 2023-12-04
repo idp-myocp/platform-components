@@ -48,6 +48,9 @@ upstream:
               ca: ${CA_CERT}
               require: true
               rejectUnauthorized: true
+        auth:
+          keys:
+            - secret: u95WN24xnXu7OUQL5ji1qAAVC3TF9Re6
 
       integrations:
         github:
