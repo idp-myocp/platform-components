@@ -108,6 +108,7 @@ upstream:
       enabled:
         github: true
         keycloak: true
+        gitlab: false
 
     extraEnvVars:
     - name: POSTGRESQL_ADMIN_PASSWORD
