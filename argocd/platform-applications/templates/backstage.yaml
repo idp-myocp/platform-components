@@ -27,7 +27,6 @@ spec:
           value: "{{ .Values.backstage.githubWebHookSecret }}"
         - name: "global.github.privateKey"
           value: "{{ .Values.backstage.githubPrivateKey }}"
-
         - name: "global.keycloak.backstageClient.secret"
           value: "{{ .Values.keycloak.backstageClient.secret }}"
         - name: "global.backstage.confluence.url"
