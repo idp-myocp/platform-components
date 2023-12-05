@@ -10,7 +10,6 @@ global:
     clientSecret: clientSecret
     webhookUrl: webhookUrl
     webhookSecret: webhookSecret
-    privateKey: privateKey
 
   keycloak:
     prefixBaseUrl: "https://sso.myocp.net"
@@ -76,7 +75,7 @@ upstream:
                 webhookUrl: "{{ .Values.global.github.webhookUrl }}"
                 webhookSecret: "{{ .Values.global.github.webhookSecret }}"
                 privateKey: |
-                   "{{ .Values.global.github.privateKey }}"
+                   "${GITHUB_PRIVATEKEY}"
       catalog:
         import: 
           entityFilename: catalog-info.yaml
@@ -132,6 +131,11 @@ upstream:
         secretKeyRef:
           key: postgres-password
           name: "{{ .Release.Name }}-db-postgresql"
+    - name: GITHUB_PRIVATEKEY
+      valueFrom:
+         secretKeyRef:
+           key: idp-private-key.pem
+           name: "{{ .Release.Name }}-idp-github"
     - name: GITHUB_TOKEN
       valueFrom:
         secretKeyRef:
