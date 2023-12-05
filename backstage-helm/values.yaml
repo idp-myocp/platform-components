@@ -127,11 +127,11 @@ upstream:
           key: ca.crt
           name: "{{ .Release.Name }}-db-postgresql-tls" # Should match with the name of the secret where the CA for the postgresql server is stored
     - name: CONFLUENCE_URL
-      value: changeme
+      value: "{{ .Value.gobal.confluence.url }} "
     - name: CONFLUENCE_USERNAME
-      value: changeme
+      value: "{{ .Value.gobal.confluence.username }} "
     - name: CONFLUENCE_PASSWORD
-      value: changeme
+      value: "{{ .Value.gobal.confluence.password }} "
     extraContainers:
     - name: "oauth2-proxy"
       env:
