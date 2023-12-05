@@ -21,7 +21,7 @@ spec:
           value: "{{ .Values.backstage.confluence.url }}"
         - name: "global.backstage.confluence.username"
           value: "{{ .Values.confluence.username }}"
-        - name: "global.backstage.sconfluence.password"
+        - name: "global.backstage.confluence.password"
           value: "{{ .Values.confluence.password }}"
   destination:
     server: https://kubernetes.default.svc
