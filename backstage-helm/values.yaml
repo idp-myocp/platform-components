@@ -5,6 +5,14 @@ global:
   host: ""
   github:
     token: changeme
+    appId: appid
+    clientId: clientId
+    clientSecret: clientSecret
+    webhookUrl: webhookUrl
+    webhookSecret: webhookSecret
+    privateKey: |
+            privateKey
+
   keycloak:
     prefixBaseUrl: "https://sso.myocp.net"
     backstageClient:
@@ -62,7 +70,13 @@ upstream:
       integrations:
         github:
           - host: github.com
-            token: "{{ .Values.global.github.token }}"
+            appId: "{{ .Values.global.github.appId }}"
+            clientId: "{{ .Values.global.github.clientId }}"
+            clientSecret: "{{ .Values.global.github.clientSecret }}"
+            webhookUrl: "{{ .Values.global.github.webhookUrl }}"
+            webhookSecret: "{{ .Values.global.github.webhookSecret }}"
+            privateKey: |
+                 "{{ .Values.global.github.privateKey }}"
       catalog:
         import: 
           entityFilename: catalog-info.yaml
@@ -215,6 +229,3 @@ route:
     # --  Indicates the desired behavior for insecure connections to a route.
     # <br /> While each router may make its own decisions on which ports to expose, this is normally port 80. The only valid values are None, Redirect, or empty for disabled.
     insecureEdgeTerminationPolicy: "Redirect"
-
-github:
-  token: "{{ .Values.global.github.token }}"
