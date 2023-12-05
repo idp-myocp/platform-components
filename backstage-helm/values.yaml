@@ -215,4 +215,4 @@ route:
     insecureEdgeTerminationPolicy: "Redirect"
 
 github:
-  token: "{{ .Values.github.token }}"
+  token: ${GITHUB_TOKEN}
