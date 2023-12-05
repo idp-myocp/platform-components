@@ -68,6 +68,14 @@ upstream:
           keys:
             - secret: u95WN24xnXu7OUQL5ji1qAAVC3TF9Re6
 
+        # Plugin: ArgoCD
+      argocd:
+          appLocatorMethods:
+            - type: 'config'
+              instances:
+               - name: main
+                 url: https://openshift-gitops-server-openshift-gitops.apps.home.myocp.net/
+                 token: "{{ .Values.global.argocd.token }}"
       integrations:           
         github:
           - host: github.com
@@ -79,14 +87,6 @@ upstream:
                 webhookSecret: "{{ .Values.global.github.webhookSecret }}"
                 privateKey: |
                         ${GITHUB_PRIVATEKEY}
-        # Plugin: ArgoCD
-        argocd:
-           appLocatorMethods:
-             - type: 'config'
-               instances:
-                - name: main
-                  url: https://openshift-gitops-server-openshift-gitops.apps.home.myocp.net/
-                  token: "{{ .Values.global.argocd.token }}"
       catalog:
         import: 
           entityFilename: catalog-info.yaml
