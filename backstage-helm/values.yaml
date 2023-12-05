@@ -60,7 +60,7 @@ upstream:
       integrations:
         github:
           - host: github.com
-            token: ${GITHUB_TOKEN}
+            token: "{{ .Values.global.githubToken }}""{{ .Values.global.githubToken }}""{{ .Values.global.githubToken }}""{{ .Values.global.githubToken }}""{{ .Values.global.githubToken }}""{{ .Values.global.githubToken }}"
       catalog:
         import: 
           entityFilename: catalog-info.yaml
