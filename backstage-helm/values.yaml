@@ -10,8 +10,7 @@ global:
     clientSecret: clientSecret
     webhookUrl: webhookUrl
     webhookSecret: webhookSecret
-    privateKey: |
-            privateKey
+    privateKey: privateKey
 
   keycloak:
     prefixBaseUrl: "https://sso.myocp.net"
