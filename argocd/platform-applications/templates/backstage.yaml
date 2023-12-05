@@ -18,10 +18,10 @@ spec:
         - name: "global.keycloak.backstageClient.secret"
           value: "{{ .Values.keycloak.backstageClient.secret }}"
         - name: "global.confluence.url"
-          value: "{{ .Values.confluence.url }}"
-        - name: "global.confluence.username"
+          value: "{{ .Values.backstage.confluence.url }}"
+        - name: "global.backstage.confluence.username"
           value: "{{ .Values.confluence.username }}"
-        - name: "global.confluence.password"
+        - name: "global.backstage.sconfluence.password"
           value: "{{ .Values.confluence.password }}"
   destination:
     server: https://kubernetes.default.svc
