@@ -3,6 +3,8 @@ global:
   clusterRouterBase: app.example.com
   # -- Custom hostname shorthand, overrides `global.clusterRouterBase`, `upstream.ingress.host`, `route.host`, and url values in `upstream.backstage.appConfig`
   host: ""
+  github:
+    token: changeme
   keycloak:
     prefixBaseUrl: "https://sso.myocp.net"
     backstageClient:
