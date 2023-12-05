@@ -69,13 +69,14 @@ upstream:
       integrations:
         github:
           - host: github.com
-            appId: "{{ .Values.global.github.appId }}"
-            clientId: "{{ .Values.global.github.clientId }}"
-            clientSecret: "{{ .Values.global.github.clientSecret }}"
-            webhookUrl: "{{ .Values.global.github.webhookUrl }}"
-            webhookSecret: "{{ .Values.global.github.webhookSecret }}"
-            privateKey: |
-                "{{ .Values.global.github.privateKey }}"
+            apps:
+              - appId: "{{ .Values.global.github.appId }}"
+                clientId: "{{ .Values.global.github.clientId }}"
+                clientSecret: "{{ .Values.global.github.clientSecret }}"
+                webhookUrl: "{{ .Values.global.github.webhookUrl }}"
+                webhookSecret: "{{ .Values.global.github.webhookSecret }}"
+                privateKey: |
+                   "{{ .Values.global.github.privateKey }}"
       catalog:
         import: 
           entityFilename: catalog-info.yaml
