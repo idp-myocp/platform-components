@@ -3,6 +3,9 @@ global:
   clusterRouterBase: app.example.com
   # -- Custom hostname shorthand, overrides `global.clusterRouterBase`, `upstream.ingress.host`, `route.host`, and url values in `upstream.backstage.appConfig`
   host: ""
+  argocd:
+    token: changeme
+    
   github:
     token: changeme
     appId: appid
@@ -65,7 +68,7 @@ upstream:
           keys:
             - secret: u95WN24xnXu7OUQL5ji1qAAVC3TF9Re6
 
-      integrations:
+      integrations:           
         github:
           - host: github.com
             apps:
@@ -124,7 +127,6 @@ upstream:
         environment: production
         providers:
           oauth2Proxy: {}
-
     extraEnvVars:
     - name: POSTGRESQL_ADMIN_PASSWORD
       valueFrom:
@@ -236,3 +238,12 @@ route:
 
 github:
   token: "{{ .Values.global.github.token }}"
+
+# Plugin: ArgoCD
+argocd:
+  appLocatorMethods:
+    - type: 'config'
+      instances:
+        - name: main
+          url: https://openshift-gitops-server-openshift-gitops.apps.home.myocp.net/
+          token: "{{ .Values.global.argocd.token }}"
