@@ -74,7 +74,8 @@ upstream:
             clientSecret: "{{ .Values.global.github.clientSecret }}"
             webhookUrl: "{{ .Values.global.github.webhookUrl }}"
             webhookSecret: "{{ .Values.global.github.webhookSecret }}"
-            privateKey: "{{ .Values.global.github.privateKey }}"
+            privateKey: |
+                "{{ .Values.global.github.privateKey }}"
       catalog:
         import: 
           entityFilename: catalog-info.yaml
@@ -227,3 +228,6 @@ route:
     # --  Indicates the desired behavior for insecure connections to a route.
     # <br /> While each router may make its own decisions on which ports to expose, this is normally port 80. The only valid values are None, Redirect, or empty for disabled.
     insecureEdgeTerminationPolicy: "Redirect"
+
+github:
+  token: "{{ .Values.global.github.token }}"
