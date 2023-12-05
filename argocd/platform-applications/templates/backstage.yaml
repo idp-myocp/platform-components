@@ -17,11 +17,11 @@ spec:
           value: "{{ .Values.backstage.githubToken }}"
         - name: "global.keycloak.backstageClient.secret"
           value: "{{ .Values.keycloak.backstageClient.secret }}"
-        - name: "gobal.confluence.url"
+        - name: "global.confluence.url"
           value: "{{ .Values.confluence.url }}"
-        - name: "gobal.confluence.username"
+        - name: "global.confluence.username"
           value: "{{ .Values.confluence.username }}"
-        - name: "gobal.confluence.password"
+        - name: "global.confluence.password"
           value: "{{ .Values.confluence.password }}"
   destination:
     server: https://kubernetes.default.svc
