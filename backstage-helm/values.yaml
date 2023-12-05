@@ -75,33 +75,7 @@ upstream:
                 webhookUrl: "{{ .Values.global.github.webhookUrl }}"
                 webhookSecret: "{{ .Values.global.github.webhookSecret }}"
                 privateKey: |
-                      -----BEGIN RSA PRIVATE KEY-----
-                      MIIEpAIBAAKCAQEA3rKMqfpF4QilsNuMQziIoSUI5193Xx2HrpurmrORijL+F8Qk
-                      YvLWiikPmvZ7ibKQdk47DcPWkUoYe8zKFZQEQD2fXROnXpxVRDLWXU1MucBdGKFM
-                      46er0RfvZoC2tKMwjCcUIJWXN7JhoQNX5zz397bH2gp7YbLFoW2QAX7OyTyLSLyT
-                      uVxrCh8iMxkWXWkKaWBAzFVxQdGd3rr/RUeZSrHIQtduSpVzWhAvBqadhsHYziXk
-                      5mkhIf7gcOsoAp4YR/tnzewmGlbP6GXdL0vt3tbDglul/UvSK9B2unuGww+tgEVF
-                      Dx75tC+bn6PeRa+KcNQxGgWg0OgKwzVFefvjpwIDAQABAoIBAEqEAg9KQCGZTB/O
-                      hrNjckxBYSZSSlYYQnNJgXUlSriscVswdWBqkyDttlwKx7F+f1omuRnVArHg0ipy
-                      jtgDjByWwgFZ9zHwK5PDUvkrSVYKKNx59IlkbFhtotxwizIMPM1YsiJpC41GceZ3
-                      gO1N+Eb58QtjYH+DWx+10m69qKGqsaBaNJSInXFcqOFEcxPdTBy9F9eDwUaSA0cZ
-                      KHLzKlgPWM9hio92BO4i+uqe2jawnExSqG3Bzdy0v/3RL+4fyFMNKeCekZhaW0nJ
-                      cKXQhBAITzQUSXGSFvX8y2UPDC7VnDepXARp8gZSHOl26/09IeAzzihcPloBPLv+
-                      vjcH8VECgYEA+LhStpMnNJo7yEe35ibnarZ3kJhTB90K8ye4fYDtdXu2SNcv/2Rf
-                      Rp4N+fxSLHRoWngYJzlZPAASpQDvsrKepQPD2YNMnPP/+HkEOcBvxJlkkCn4lcgG
-                      b4vzoL0CzQGxENwg92lm36KF2xL2oesHLmGreEBm3P1Xe3tZmT94VD8CgYEA5Tc8
-                      zYhNcr7TpZdniPSOKXm3JgioIIs6Gf2TA3DjIZx19b12K2BooBhu21p2kRxPQWj9
-                      TojJwwnSBwmoP6esWWYT5HjG8d3nAikPZsKVlNdVDDiUxuWT7AbpiGT95nTlNoN1
-                      neK6ZYDnRYiOxdxa1LrXWY2PIwN9zXQzwzqj9pkCgYEAmTF+0LGGXmH5HH0ACiRA
-                      OXw13LvVuGwviGEYw0Sb/da7CdZw289I18gWN7lwK61vcPmzdsVd7xTkZvlSqjBW
-                      grD0+o5iq/Gl4bc4IRIkRWVtiVYwpKDVRfNflcuVZAv8sbPEIl+rW2dRJwRhII4Q
-                      mELUSHbyZH8uWQI6x6dOSCUCgYB1aUAKAAG7/yemsNFmA+82K5S3NMP6N5cBbTR7
-                      FL4jn2OFBxGa0n2FVD6kucf2OMwYM1Fdgw/migc9d6LpSFguSu1xoLQ3fHUyVBoB
-                      hzbb0RlNc0YyQ7Lrufax2Rl9jO9EZz4+K79S8x6ELZkEnQUh5rscsjhZtRYhwZ4q
-                      KMWIMQKBgQCgs4uGuExRNT5/3XQCDEyvwgdvnpppqjAB03bZGfvvpplA8EUDJojJ
-                      4LKR4Y28J7r/j1TGiX7QiwAxkoF2r3l5q9lHGK3k0XsD+56bXgP/pwhysE7K2wyG
-                      e+4sMbeWzb3wDyf98P6x/dl/xDa8Lbj0E6bcr1O3ZGk+4jhJN3G8cQ==
-                      -----END RSA PRIVATE KEY-----
+                        ${GITHUB_PRIVATEKEY}
       catalog:
         import: 
           entityFilename: catalog-info.yaml
