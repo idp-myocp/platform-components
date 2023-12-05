@@ -60,7 +60,7 @@ upstream:
       integrations:
         github:
           - host: github.com
-            token: "{{ .Values.global.githubToken }}"
+            token: "{{ .Values.global.github.token }}"
       catalog:
         import: 
           entityFilename: catalog-info.yaml
@@ -215,4 +215,4 @@ route:
     insecureEdgeTerminationPolicy: "Redirect"
 
 github:
-  token: "{{ .Values.global.githubToken }}"
+  token: "{{ .Values.global.github.token }}"
