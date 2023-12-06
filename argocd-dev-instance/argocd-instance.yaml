@@ -1,4 +1,4 @@
-/apiVersion: argoproj.io/v1beta1
+apiVersion: argoproj.io/v1beta1
 kind: ArgoCD
 metadata:
   annotations:
@@ -7,7 +7,7 @@ metadata:
   name: argocd-for-dev
 spec:
   extraConfig:
-    "accounts.argocd-devops": "apiKey"
+     accounts.argocd-devops: apiKey
   server:
     insecure: true
     route:
@@ -15,8 +15,6 @@ spec:
       tls:
         termination: edge
         insecureEdgeTerminationPolicy: Redirect
-  dex:
-    openShiftOAuth: true
   resourceCustomizations: |
     route.openshift.io/Route:
       ignoreDifferences: |
