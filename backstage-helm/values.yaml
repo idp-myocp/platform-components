@@ -144,11 +144,11 @@ upstream:
                 timeout: { minutes: 1 }
                 initialDelay: { seconds: 15 }
       auth:
-        environment: production
+        environment: development
         providers:
           oauth2Proxy: {}
           github:
-            production:
+            development:
               clientId: c9e206284fb8fd16e6d4
               clientSecret: e7611578021848f9b7ecd6efe2b4ba96c808f4b6
     extraEnvVars:
