@@ -31,10 +31,14 @@ spec:
           value: "{{ .Values.keycloak.backstageClient.secret }}"
         - name: "global.backstage.confluence.url"
           value: "{{ .Values.backstage.confluence.url }}"
-        - name: "global.backstage.confluence.user"
+        - name: "global.backstage.jira.url"
+          value: "{{ .Values.backstage.jira.url }}"
+        - name: "global.backstage.atlassian.user"
           value: "{{ .Values.backstage.confluence.user }}"
         - name: "global.backstage.confluence.password"
           value: "{{ .Values.backstage.confluence.password }}"
+        - name: "global.backstage.jira.token"
+          value: "{{ .Values.backstage.jira.token }}"
   destination:
     server: https://kubernetes.default.svc
     namespace: developer-hub

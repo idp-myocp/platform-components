@@ -12,10 +12,6 @@ global:
     clientSecret: clientSecret
     webhookUrl: webhookUrl
     webhookSecret: webhookSecret
-  confluence:
-      url: changeme
-      user: changeme
-      password: changeme
   keycloak:
     prefixBaseUrl: "https://sso.myocp.net"
     backstageClient:
@@ -65,29 +61,16 @@ upstream:
               ca: ${CA_CERT}
               require: true
               rejectUnauthorized: true
-
+        csp:
+          img-src:
+            # "'self'" and 'data' are from the backstage default but must be set since img-src is overriden
+            - "'self'"
+            - 'data:'
+            # Allow your Jira instance for @roadiehq/backstage-plugin-jira
+            - 'JIRA_URL'
         auth:
           keys:
             - secret: u95WN24xnXu7OUQL5j1qAAVC3TF9Re6
-        # Plugin: ArgoCD
-      argocd:
-          appLocatorMethods:
-            - type: 'config'
-              instances:
-               - name: main
-                 token: "{{ .Values.global.argocd.token }}"
-                 url: https://argocd-for-dev-server-argocd-dev-instance.apps.home.myocp.net/
-      proxy:
-        endpoints:
-        # Plugin: Jira
-        '/jira/api':
-            target: "{{ .Values.global.confluence.url }}"
-        headers:
-           Authorization: "{{ .Values.global.confluence.password }}"
-           Accept: 'application/json'
-           Content-Type: 'application/json'
-           X-Atlassian-Token: 'no-check'
-           User-Agent: "{{ .Values.global.confluence.user }}"
       integrations:           
         github:
           - host: github.com
@@ -99,6 +82,25 @@ upstream:
                 webhookSecret: "{{ .Values.global.github.webhookSecret }}"
                 privateKey: |
                         ${GITHUB_PRIVATEKEY}
+ 
+        # Plugin: ArgoCD
+      argocd:
+          appLocatorMethods:
+            - type: 'config'
+              instances:
+               - name: main
+                 token: "{{ .Values.global.argocd.token }}"
+                 url: https://argocd-for-dev-server-argocd-dev-instance.apps.home.myocp.net/
+      proxy:
+        # Plugin: Jira
+        '/jira/api':
+            target: "{{ .Values.global.jira.url }}"
+        headers:
+           Authorization: ${JIRA_TOKEN}
+           Accept: 'application/json'
+           Content-Type: 'application/json'
+           X-Atlassian-Token: 'no-check'
+           User-Agent: "MY-UA-STRING"
       catalog:
         import: 
           entityFilename: catalog-info.yaml
@@ -174,10 +176,16 @@ upstream:
           name: "{{ .Release.Name }}-db-postgresql-tls" # Should match with the name of the secret where the CA for the postgresql server is stored
     - name: CONFLUENCE_URL
       value: "{{ .Values.global.backstage.confluence.url }} "
-    - name: CONFLUENCE_USERNAME
-      value: "{{ .Values.global.backstage.confluence.user }} "
     - name: CONFLUENCE_PASSWORD
       value: "{{ .Values.global.backstage.confluence.password }} "
+    - name: JIRA_URL
+      value: "{{ .Values.global.backstage.jira.url }}"
+    - name: ATLASSIAN_USERNAME
+      value: "{{ .Values.global.backstage.atlassian.user }}"
+    - name: JIRA_TOKEN
+      value: "Basic {{ .Values.global.backstage.jira.token }}"
+
+
     extraContainers:
     - name: "oauth2-proxy"
       env:
