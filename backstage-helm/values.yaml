@@ -74,7 +74,7 @@ upstream:
               instances:
                - name: main
                  token: "{{ .Values.global.argocd.token }}"
-                 url: https://openshift-gitops-server-openshift-gitops.apps.home.myocp.net/
+                 url: https://argocd-for-dev-server-argocd-dev-instance.apps.home.myocp.net/
       integrations:           
         github:
           - host: github.com
