@@ -70,8 +70,8 @@ upstream:
 
         # Plugin: ArgoCD
       argocd:
-          username: {{ .Values.global.argocd.username }}
-          password: {{ .Values.global.argocd.password }}
+          username: "{{ .Values.global.argocd.username }}"
+          password: "{{ .Values.global.argocd.password }}"
           appLocatorMethods:
             - type: 'config'
               instances:
