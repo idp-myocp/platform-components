@@ -20,9 +20,9 @@ global:
     prefixBaseUrl: "https://sso.myocp.net"
     backstageClient:
       id: "backstage"
-      realm: OpenShift
+      realm: backstage
       secret: my-secret
-      oidcIssuerUrl: "https://sso.myocp.net/realms/OpenShift"
+      oidcIssuerUrl: "https://sso.myocp.net/realms/backstage"
 
 dynamic:
       plugins:
