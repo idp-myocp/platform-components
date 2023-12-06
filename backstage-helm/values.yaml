@@ -149,8 +149,8 @@ upstream:
           oauth2Proxy: {}
           github:
             production:
-              clientId: "{{ .Values.global.github.clientId }}"
-              clientSecret: "{{ .Values.global.github.clientSecret }}"
+              clientId: c9e206284fb8fd16e6d4
+              clientSecret: e7611578021848f9b7ecd6efe2b4ba96c808f4b6
     extraEnvVars:
     - name: POSTGRESQL_ADMIN_PASSWORD
       valueFrom:
