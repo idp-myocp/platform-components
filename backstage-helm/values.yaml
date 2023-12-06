@@ -200,12 +200,8 @@ upstream:
       value: "{{ .Values.global.backstage.confluence.url }} "
     - name: ARGOCD_AUTH_TOKEN
       value: "{{ .Values.global.argocd.token }}"
-    - name: CONFLUENCE_PASSWORD
-      value: "{{ .Values.global.backstage.confluence.password }} "
     - name: JIRA_URL
       value: "{{ .Values.global.backstage.jira.url }}"
-    - name: ATLASSIAN_USERNAME
-      value: "{{ .Values.global.backstage.atlassian.user }}"
     - name: JIRA_TOKEN
       value: "Basic {{ .Values.global.backstage.jira.token }}"
 
