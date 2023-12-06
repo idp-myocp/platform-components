@@ -1,5 +1,5 @@
 kind: AppProject
-apiVersion: argoproj.io/v1beta1
+apiVersion: argoproj.io/v1alpha1
 metadata:
   name: argocd-developers
 spec:
