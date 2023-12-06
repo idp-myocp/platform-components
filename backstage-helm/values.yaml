@@ -204,6 +204,10 @@ upstream:
       value: "{{ .Values.global.backstage.jira.url }}"
     - name: JIRA_TOKEN
       value: "Basic {{ .Values.global.backstage.jira.token }}"
+    - name: CONFLUENCE_USERNAME
+      value: "{{ .Values.global.backstage.atlassian.user }}"
+    - name: CONFLUENCE_PASSWORD
+      value: "{{ .Values.global.backstage.atlassian.password }}"
 
 
     extraContainers:

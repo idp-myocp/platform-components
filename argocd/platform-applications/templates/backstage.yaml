@@ -37,6 +37,10 @@ spec:
           value: "{{ .Values.backstage.confluence.url }}"
         - name: "global.backstage.jira.url"
           value: "{{ .Values.backstage.jira.url }}"
+        - name: "global.backstage.atlassian.user"
+          value: "{{ .Values.backstage.atlassian.user }}"
+        - name: "global.backstage.atlassian.password"
+          value: "{{ .Values.backstage.atlassian.password }}"
         - name: "global.backstage.jira.token"
           value: "{{ .Values.backstage.jira.token }}"
   destination:
