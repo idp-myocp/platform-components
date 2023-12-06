@@ -20,9 +20,9 @@ global:
     prefixBaseUrl: "https://sso.myocp.net"
     backstageClient:
       id: "backstage"
-      realm: backstage
+      realm: OpenShift
       secret: my-secret
-      oidcIssuerUrl: "https://sso.myocp.net/realms/backstage"
+      oidcIssuerUrl: "https://sso.myocp.net/realms/OpenShift"
 
 dynamic:
       plugins:
@@ -87,7 +87,7 @@ upstream:
            Accept: 'application/json'
            Content-Type: 'application/json'
            X-Atlassian-Token: 'no-check'
-           User-Agent: "{{ .Values.global.confluence.user }}"
+           User-Agent: "{{ .Values.global.confluence.user }}""
       integrations:           
         github:
           - host: github.com
@@ -111,10 +111,17 @@ upstream:
           - type: url
             target: https://github.com/idp-myocp/goldenpath-template/blob/main/template-index.yaml
         providers:
-          githubOrg:
+          keycloakOrg:
             default:
-              id: development
-              orgUrl: https://github.com/idp-myocp
+              baseUrl: "{{ .Values.global.keycloak.prefixBaseUrl }}"
+              loginRealm: "{{ .Values.global.keycloak.backstageClient.id }}"
+              realm: "{{ .Values.global.keycloak.backstageClient.realm }}"
+              clientId: "{{ .Values.global.keycloak.backstageClient.id }}"
+              clientSecret: "{{ .Values.global.keycloak.backstageClient.secret }}"
+              schedule:
+                frequency: { minutes: 1 }
+                timeout: { minutes: 1 }
+                initialDelay: { seconds: 15 }
           github:
             systems:
               organization: 'idp-myocp' # string
@@ -137,13 +144,13 @@ upstream:
                 timeout: { minutes: 1 }
                 initialDelay: { seconds: 15 }
       auth:
-        environment: development
+        environment: production
         providers:
           oauth2Proxy: {}
           github:
-            development:
-              clientId: c9e206284fb8fd16e6d4
-              clientSecret: e7611578021848f9b7ecd6efe2b4ba96c808f4b6
+            production:
+              clientId: "{{ .Values.global.github.clientId }}"
+              clientSecret: "{{ .Values.global.github.clientSecret }}"
     extraEnvVars:
     - name: POSTGRESQL_ADMIN_PASSWORD
       valueFrom:
@@ -171,10 +178,37 @@ upstream:
       value: "{{ .Values.global.backstage.confluence.user }} "
     - name: CONFLUENCE_PASSWORD
       value: "{{ .Values.global.backstage.confluence.password }} "
+    extraContainers:
+    - name: "oauth2-proxy"
+      env:
+        - name: OAUTH2_PROXY_CLIENT_ID
+          value: "{{ .Values.global.keycloak.backstageClient.id }}"
+        - name: OAUTH2_PROXY_CLIENT_SECRET
+          value: "{{ .Values.global.keycloak.backstageClient.secret }}"
+        - name: OAUTH2_PROXY_COOKIE_SECRET
+          value: 'fksdZJWUhzlfGw3Ve6POYc2jmjZogjCh'
+        - name: OAUTH2_PROXY_OIDC_ISSUER_URL
+          value: "{{ .Values.global.keycloak.backstageClient.oidcIssuerUrl }}"
+        - name: OAUTH2_PROXY_SSL_INSECURE_SKIP_VERIFY
+          value: 'true'
+      ports:
+        - name: "oauth2-proxy"
+          containerPort: 4180
+          protocol: TCP
+      imagePullPolicy: IfNotPresent
+      image: "quay.io/oauth2-proxy/oauth2-proxy:latest"
+      args:
+        - '--provider=oidc'
+        - '--email-domain=*'
+        - '--upstream=http://localhost:7007'
+        - '--http-address=0.0.0.0:4180'
+        - '--skip-provider-button'
+        - '--code-challenge-method=S256'
+
   service:
     ports:
-      backend: 7007
-      targetPort: backend
+      backend: 4180
+      targetPort: oauth2-proxy
 
   postgresql:
     enabled: false #Disabled when using an external connection
