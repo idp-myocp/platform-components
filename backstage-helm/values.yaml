@@ -66,7 +66,6 @@ upstream:
         auth:
           keys:
             - secret: u95WN24xnXu7OUQL5ji1qAAVC3TF9Re6
-
         # Plugin: ArgoCD
       argocd:
           appLocatorMethods:
