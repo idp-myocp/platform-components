@@ -10,8 +10,6 @@ global:
     appId: appid
     clientId: clientId
     clientSecret: clientSecret
-    oauthClientId: changeme
-    oauthClientSecret: changeme
     webhookUrl: webhookUrl
     webhookSecret: webhookSecret
   confluence:
@@ -22,9 +20,9 @@ global:
     prefixBaseUrl: "https://sso.myocp.net"
     backstageClient:
       id: "backstage"
-      realm: backstage
+      realm: OpenShift
       secret: my-secret
-      oidcIssuerUrl: "https://sso.myocp.net/realms/backstage"
+      oidcIssuerUrl: "https://sso.myocp.net/realms/OpenShift"
 
 dynamic:
       plugins:
@@ -93,7 +91,14 @@ upstream:
       integrations:           
         github:
           - host: github.com
-            token: "{{ .Values.global.github.token }}"
+            apps:
+              - appId: "{{ .Values.global.github.appId }}"
+                clientId: "{{ .Values.global.github.clientId }}"
+                clientSecret: "{{ .Values.global.github.clientSecret }}"
+                webhookUrl: "{{ .Values.global.github.webhookUrl }}"
+                webhookSecret: "{{ .Values.global.github.webhookSecret }}"
+                privateKey: |
+                        ${GITHUB_PRIVATEKEY}
       catalog:
         import: 
           entityFilename: catalog-info.yaml
@@ -142,9 +147,10 @@ upstream:
         environment: production
         providers:
           oauth2Proxy: {}
-      enabled:
-         github: true
-         keycloak: true
+          github:
+            production:
+              clientId: "{{ .Values.global.github.clientId }}"
+              clientSecret: "{{ .Values.global.github.clientSecret }}"
     extraEnvVars:
     - name: POSTGRESQL_ADMIN_PASSWORD
       valueFrom:
