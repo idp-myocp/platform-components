@@ -134,10 +134,10 @@ upstream:
         environment: production
         providers:
           oauth2Proxy: {}
-      github:
-        production:
-          clientId: "{{ .Values.global.github.clientId }}"
-          clientSecret: "{{ .Values.global.github.clientSecret }}"
+          github:
+            production:
+              clientId: "{{ .Values.global.github.clientId }}"
+              clientSecret: "{{ .Values.global.github.clientSecret }}"
     extraEnvVars:
     - name: POSTGRESQL_ADMIN_PASSWORD
       valueFrom:
