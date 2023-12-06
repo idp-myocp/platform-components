@@ -188,6 +188,7 @@ upstream:
         - '--upstream=http://localhost:7007'
         - '--http-address=0.0.0.0:4180'
         - '--skip-provider-button'
+        - '--code-challenge-method=S256'
 
   service:
     ports:
