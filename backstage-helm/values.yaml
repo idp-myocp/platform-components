@@ -111,6 +111,10 @@ upstream:
           - type: url
             target: https://github.com/idp-myocp/goldenpath-template/blob/main/template-index.yaml
         providers:
+          githubOrg:
+            default:
+              id: development
+              orgUrl: https://github.com/idp-myocp
           github:
             systems:
               organization: 'idp-myocp' # string
