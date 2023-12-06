@@ -1,4 +1,4 @@
-apiVersion: argoproj.io/v1beta1
+/apiVersion: argoproj.io/v1beta1
 kind: ArgoCD
 metadata:
   annotations:
@@ -6,6 +6,8 @@ metadata:
     argocd.argoproj.io/compare-options: IgnoreExtraneous
   name: argocd-for-dev
 spec:
+  extraConfig:
+    "accounts.argocd-devops": "apiKey"
   server:
     insecure: true
     route:
