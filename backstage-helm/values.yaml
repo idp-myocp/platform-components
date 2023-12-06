@@ -145,7 +145,7 @@ upstream:
           github:
             production:
               clientId: "{{ .Values.global.github.oauthClientId }}"
-              clientSecret: "{{ .Values.global.github.oauthclientSecret }}"
+              clientSecret: "{{ .Values.global.github.oauthClientSecret }}"
     extraEnvVars:
     - name: POSTGRESQL_ADMIN_PASSWORD
       valueFrom:
