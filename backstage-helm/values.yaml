@@ -4,8 +4,8 @@ global:
   # -- Custom hostname shorthand, overrides `global.clusterRouterBase`, `upstream.ingress.host`, `route.host`, and url values in `upstream.backstage.appConfig`
   host: ""
   argocd:
-    token: changeme
-
+    username: changeme
+    password: changeme
   github:
     token: changeme
     appId: appid
@@ -70,12 +70,13 @@ upstream:
 
         # Plugin: ArgoCD
       argocd:
+          username: {{ .Values.global.argocd.username }}
+          password: {{ .Values.global.argocd.password }}
           appLocatorMethods:
             - type: 'config'
               instances:
                - name: main
                  url: https://openshift-gitops-server-openshift-gitops.apps.home.myocp.net/
-                 token: "{{ .Values.global.argocd.token }}"
       integrations:           
         github:
           - host: github.com
