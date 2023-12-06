@@ -12,7 +12,10 @@ global:
     clientSecret: clientSecret
     webhookUrl: webhookUrl
     webhookSecret: webhookSecret
-
+  confluence:
+      url: changeme
+      user: changeme
+      password: changeme
   keycloak:
     prefixBaseUrl: "https://sso.myocp.net"
     backstageClient:
@@ -47,7 +50,6 @@ upstream:
       app:
         # Please update to match host in case you don't want to configure hostname via `global.clusterRouterBase` or `global.host`.
         baseUrl: 'https://{{- include "janus-idp.hostname" . }}'
-
       backend:
         baseUrl: 'https://{{- include "janus-idp.hostname" . }}'
         cors:
@@ -63,9 +65,10 @@ upstream:
               ca: ${CA_CERT}
               require: true
               rejectUnauthorized: true
+
         auth:
           keys:
-            - secret: u95WN24xnXu7OUQL5ji1qAAVC3TF9Re6
+            - secret: u95WN24xnXu7OUQL5j1qAAVC3TF9Re6
         # Plugin: ArgoCD
       argocd:
           appLocatorMethods:
@@ -74,6 +77,17 @@ upstream:
                - name: main
                  token: "{{ .Values.global.argocd.token }}"
                  url: https://argocd-for-dev-server-argocd-dev-instance.apps.home.myocp.net/
+      proxy:
+        endpoints:
+        # Plugin: Jira
+        '/jira/api':
+            target: "{{ .Values.global.confluence.url }}"
+        headers:
+           Authorization: "{{ .Values.global.confluence.password }}"
+           Accept: 'application/json'
+           Content-Type: 'application/json'
+           X-Atlassian-Token: 'no-check'
+           User-Agent: "{{ .Values.global.confluence.user }}"
       integrations:           
         github:
           - host: github.com
