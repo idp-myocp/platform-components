@@ -169,8 +169,8 @@ upstream:
       value: "{{ .Values.global.backstage.confluence.password }} "
   service:
     ports:
-      backend: 4180
-      targetPort: oauth2-proxy
+      backend: 7007
+      targetPort: backend
 
   postgresql:
     enabled: false #Disabled when using an external connection
