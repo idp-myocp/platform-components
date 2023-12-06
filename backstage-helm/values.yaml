@@ -87,7 +87,7 @@ upstream:
            Accept: 'application/json'
            Content-Type: 'application/json'
            X-Atlassian-Token: 'no-check'
-           User-Agent: "{{ .Values.global.confluence.user }}""
+           User-Agent: "{{ .Values.global.confluence.user }}"
       integrations:           
         github:
           - host: github.com
