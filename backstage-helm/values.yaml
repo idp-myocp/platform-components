@@ -16,14 +16,9 @@ global:
     prefixBaseUrl: "https://sso.myocp.net"
     backstageClient:
       id: "backstage"
-      realm: OpenShift
+      realm: backstage
       secret: my-secret
-      oidcIssuerUrl: "https://sso.myocp.net/realms/OpenShift"
-
-dynamic:
-      plugins:
-      - package: ./dynamic-plugins/dist/immobiliarelabs-backstage-plugin-gitlab-backend-dynamic
-        disabled: true
+      oidcIssuerUrl: "https://sso.myocp.net/realms/backstage"
 
 # -- Upstream Backstage [chart configuration](https://github.com/backstage/charts/blob/main/charts/backstage/values.yaml)
 # @default -- Use Openshift compatible settings
@@ -71,6 +66,33 @@ upstream:
         auth:
           keys:
             - secret: u95WN24xnXu7OUQL5j1qAAVC3TF9Re6
+        # Plugin: ArgoCD
+      argocd:
+          baseUrl: https://argocd-for-dev-server-argocd-dev-instance.apps.home.myocp.net
+          appLocatorMethods:
+            - type: 'config'
+              instances:
+               - name: main
+                 token: "{{ .Values.global.argocd.token }}"
+                 url: https://argocd-for-dev-server-argocd-dev-instance.apps.home.myocp.net/
+      proxy:
+        endpoints:
+        # Plugin: Jira
+        '/jira/api':
+            target: "{{ .Values.global.confluence.url }}"
+        headers:
+           Authorization: "{{ .Values.global.confluence.password }}"
+           Accept: 'application/json'
+           Content-Type: 'application/json'
+           X-Atlassian-Token: 'no-check'
+           User-Agent: "{{ .Values.global.confluence.user }}"
+        '/argocd/api':
+        # url to the api of your hosted argoCD instance
+            target: https://argocd-for-dev-server-argocd-dev-instance.apps.home.myocp.net/api/v1/
+            changeOrigin: true
+            headers:
+               Cookie:
+                  $env: ARGOCD_AUTH_TOKEN
       integrations:           
         github:
           - host: github.com
@@ -176,6 +198,8 @@ upstream:
           name: "{{ .Release.Name }}-db-postgresql-tls" # Should match with the name of the secret where the CA for the postgresql server is stored
     - name: CONFLUENCE_URL
       value: "{{ .Values.global.backstage.confluence.url }} "
+    - name: ARGOCD_AUTH_TOKEN
+      value: "{{ .Values.global.argocd.token }}"
     - name: CONFLUENCE_PASSWORD
       value: "{{ .Values.global.backstage.confluence.password }} "
     - name: JIRA_URL
