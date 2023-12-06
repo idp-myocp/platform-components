@@ -10,6 +10,8 @@ global:
     appId: appid
     clientId: clientId
     clientSecret: clientSecret
+    oauthClientId: changeme
+    oauthClientSecret: changeme
     webhookUrl: webhookUrl
     webhookSecret: webhookSecret
   confluence:
@@ -91,14 +93,7 @@ upstream:
       integrations:           
         github:
           - host: github.com
-            apps:
-              - appId: "{{ .Values.global.github.appId }}"
-                clientId: "{{ .Values.global.github.clientId }}"
-                clientSecret: "{{ .Values.global.github.clientSecret }}"
-                webhookUrl: "{{ .Values.global.github.webhookUrl }}"
-                webhookSecret: "{{ .Values.global.github.webhookSecret }}"
-                privateKey: |
-                        ${GITHUB_PRIVATEKEY}
+            token: "{{ .Values.global.github.token }}"
       catalog:
         import: 
           entityFilename: catalog-info.yaml
@@ -149,8 +144,8 @@ upstream:
           oauth2Proxy: {}
           github:
             production:
-              clientId: "{{ .Values.global.github.clientId }}"
-              clientSecret: "{{ .Values.global.github.clientSecret }}"
+              clientId: "{{ .Values.global.github.oauthClientId }}"
+              clientSecret: "{{ .Values.global.github.oauthclientSecret }}"
     extraEnvVars:
     - name: POSTGRESQL_ADMIN_PASSWORD
       valueFrom:
