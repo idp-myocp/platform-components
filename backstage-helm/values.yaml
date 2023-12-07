@@ -120,7 +120,7 @@ upstream:
             headers:
               Authorization: "Bearer {{ .Values.global.jfrog.artifactory.token}}"
             # Change to "false" in case of using self hosted artifactory instance with a self-signed certificate
-            secure: true
+            secure: false
       integrations:           
         github:
           - host: github.com
