@@ -45,6 +45,12 @@ upstream:
         baseUrl: 'https://{{- include "janus-idp.hostname" . }}'
         cors:
           origin: 'https://{{- include "janus-idp.hostname" . }}'
+          credentials: true
+          methods:
+           - GET
+           - POST
+           - PUT
+           - DELETE
         database:
           client: pg
           connection:
