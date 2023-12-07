@@ -80,7 +80,7 @@ upstream:
       proxy:
         # Plugin: Jira
         '/jira/api':
-            target: "${JIRA_TOKEN}"
+            target: "${JIRA_URL}"
         headers:
            Authorization: ${JIRA_TOKEN}
            Accept: 'application/json'
