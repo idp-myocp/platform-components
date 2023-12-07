@@ -96,7 +96,7 @@ upstream:
         '/jfrog-artifactory/api':
             target: '${JFROG_URL}'
             headers:
-              Authorization: 'Bearer {{ " .Value.global.jfrog-artifactory.github.token"}}'
+              Authorization: 'Bearer {{ " .Value.global.jfrog.artifactory.github.token"}}'
             # Change to "false" in case of using self hosted artifactory instance with a self-signed certificate
               secure: true
       integrations:           
@@ -205,7 +205,7 @@ upstream:
     - name: CONFLUENCE_PASSWORD
       value: "{{ .Values.global.backstage.atlassian.password }}"
     - name: JFROG_URL
-      value: "{{ .Values.global.jfrog-artifactory.url}}"
+      value: "{{ .Values.global.jfrog.artifactory.url}}"
 
 
     extraContainers:
