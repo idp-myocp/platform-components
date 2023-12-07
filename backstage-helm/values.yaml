@@ -122,7 +122,7 @@ upstream:
           '/jfrog-artifactory/api':
             target: "{{ .Values.global.jfrog.artifactory.url}}"
             headers:
-              Authorization: Bearer "{{ .Values.global.jfrog.artifactory.github.token}}"
+              Authorization: "{{ .Values.global.jfrog.artifactory.token}}"
             # Change to "false" in case of using self hosted artifactory instance with a self-signed certificate
             secure: true
 
@@ -246,7 +246,7 @@ upstream:
     - name: ARTIFACTORY_URL
       value: "{{ .Values.global.jfrog.artifactory.url}}"
     - name: ARTIFACTORY_TOKEN
-      value: "{{ .Values.global.jfrog.artifactory.github.token}}"
+      value: "{{ .Values.global.jfrog.artifactory.token}}"
     - name: ARTIFACTORY_SECURE
       value: 'true'
 

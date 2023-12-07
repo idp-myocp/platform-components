@@ -43,8 +43,8 @@ spec:
           value: "{{ .Values.backstage.jira.token }}"
         - name: "global.jfrog.artifactory.url"
           value: "{{ .Values.jfrog.artifactory.url }}"
-        - name: "global.jfrog.artifactory.github.token"
-          value: "{{ .Values.jfrog.artifactory.github.token }}"
+        - name: "global.jfrog.artifactory.token"
+          value: "{{ .Values.jfrog.artifactory.token }}"
   destination:
     server: https://kubernetes.default.svc
     namespace: developer-hub
