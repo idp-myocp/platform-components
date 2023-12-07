@@ -195,7 +195,7 @@ upstream:
       value: "{{ .Values.global.jfrog.artifactory.url}}"
     - name: ARTIFACTORY_TOKEN
       value: "{{ .Values.global.jfrog.artifactory.github.token}}"
-    - name: ${ARTIFACTORY_SECURE}
+    - name: ARTIFACTORY_SECURE
       value: 'true'
 
     extraContainers:
