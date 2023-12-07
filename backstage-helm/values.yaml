@@ -196,7 +196,7 @@ upstream:
     - name: ARTIFACTORY_TOKEN
       value: "{{ .Values.global.jfrog.artifactory.github.token}}"
     - name: ${ARTIFACTORY_SECURE}
-      value: true
+      value: 'true'
 
     extraContainers:
     - name: "oauth2-proxy"
