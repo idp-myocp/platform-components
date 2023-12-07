@@ -77,15 +77,16 @@ upstream:
                  url: https://argocd-for-dev-server-argocd-dev-instance.apps.home.myocp.net/
       proxy:
         endpoints:
+      proxy:
         # Plugin: Jira
         '/jira/api':
-            target: "{{ .Values.global.confluence.url }}"
+            target: "${JIRA_TOKEN}"
         headers:
-           Authorization: "{{ .Values.global.confluence.password }}"
+           Authorization: ${JIRA_TOKEN}
            Accept: 'application/json'
            Content-Type: 'application/json'
            X-Atlassian-Token: 'no-check'
-           User-Agent: "{{ .Values.global.confluence.user }}"
+           User-Agent: "MY-UA-STRING"
         '/argocd/api':
         # url to the api of your hosted argoCD instance
             target: https://argocd-for-dev-server-argocd-dev-instance.apps.home.myocp.net/api/v1/
@@ -113,16 +114,6 @@ upstream:
                - name: main
                  token: "{{ .Values.global.argocd.token }}"
                  url: https://argocd-for-dev-server-argocd-dev-instance.apps.home.myocp.net/
-      proxy:
-        # Plugin: Jira
-        '/jira/api':
-            target: "{{ .Values.global.backstage.jira.url }}"
-        headers:
-           Authorization: ${JIRA_TOKEN}
-           Accept: 'application/json'
-           Content-Type: 'application/json'
-           X-Atlassian-Token: 'no-check'
-           User-Agent: "MY-UA-STRING"
       catalog:
         import: 
           entityFilename: catalog-info.yaml
