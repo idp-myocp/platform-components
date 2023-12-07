@@ -166,7 +166,7 @@ upstream:
           wikiUrl: "{{ .Values.global.backstage.atlassian.url }}"
           spaces: ["ENG"]
           auth:
-            username: "{{ .Values.global.backstage.atlassian.username }}"
+            username: "{{ .Values.global.backstage.atlassian.user }}"
             password: "{{ .Values.global.backstage.atlassian.password }}"
       enabled:
          githubOrg: true
