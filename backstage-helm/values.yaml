@@ -118,7 +118,7 @@ upstream:
           '/jfrog-artifactory/api':
             target: "{{ .Values.global.jfrog.artifactory.url}}"
             headers:
-              Authorization: "{{ .Values.global.jfrog.artifactory.token}}"
+              Authorization: "Bearer {{ .Values.global.jfrog.artifactory.token}}"
             # Change to "false" in case of using self hosted artifactory instance with a self-signed certificate
             secure: true
       integrations:           
