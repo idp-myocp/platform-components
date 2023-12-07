@@ -164,7 +164,7 @@ upstream:
               clientSecret: "{{ .Values.global.github.clientSecret }}"
       confluence:
           wikiUrl: "{{ .Values.global.backstage.atlassian.url }}"
-          spaces: "ENG"
+          spaces: ["ENG"]
           auth:
             username: "{{ .Values.global.backstage.atlassian.username }}"
             password: "{{ .Values.global.backstage.atlassian.password }}"
