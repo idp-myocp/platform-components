@@ -103,7 +103,7 @@ upstream:
                         ${GITHUB_PRIVATEKEY}
  
         # Plugin: ArgoCD
-      argocd:
+        argocd:
           appLocatorMethods:
             - type: 'config'
               instances:
@@ -162,6 +162,10 @@ upstream:
             production:
               clientId: "{{ .Values.global.github.clientId }}"
               clientSecret: "{{ .Values.global.github.clientSecret }}"
+      enabled:
+         githubOrg: true
+         github: true 
+         keycloak: true
     extraEnvVars:
     - name: POSTGRESQL_ADMIN_PASSWORD
       valueFrom:
