@@ -110,21 +110,21 @@ upstream:
 
           # Plugin: Jira
           '/jira/api':
-            target: ${JIRA_URL}
+            target: "{{ .Values.global.backstage.atlassian.url }}"
             headers:
-              Authorization: ${JIRA_TOKEN}
+              Authorization: "Basic {{ .Values.global.backstage.jira.token }}"
               Accept: 'application/json'
               Content-Type: 'application/json'
               X-Atlassian-Token: 'no-check'
-              User-Agent: ${JIRA_USER_AGENT}
+              User-Agent: "MY-UA-STRING"
 
           # Plugin: Jfrog Artifactory
           '/jfrog-artifactory/api':
-            target: ${ARTIFACTORY_URL}
+            target: "{{ .Values.global.jfrog.artifactory.url}}"
             headers:
-              Authorization: Bearer ${ARTIFACTORY_TOKEN}
+              Authorization: Bearer "{{ .Values.global.jfrog.artifactory.github.token}}"
             # Change to "false" in case of using self hosted artifactory instance with a self-signed certificate
-            secure: ${ARTIFACTORY_SECURE}
+            secure: true
 
       integrations:           
         github:
