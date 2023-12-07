@@ -77,7 +77,6 @@ upstream:
                  url: https://argocd-for-dev-server-argocd-dev-instance.apps.home.myocp.net/
       proxy:
         endpoints:
-      proxy:
         # Plugin: Jira
         '/jira/api':
             target: "${JIRA_URL}"
