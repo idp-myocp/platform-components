@@ -83,13 +83,49 @@ upstream:
                  url: https://argocd-for-dev-server-argocd-dev-instance.apps.home.myocp.net/
       proxy:
         endpoints:
-        '/argocd/api':
-        # url to the api of your hosted argoCD instance
-            target: https://argocd-for-dev-server-argocd-dev-instance.apps.home.myocp.net/api/v1/
-            changeOrigin: true
+          '/argocd/api':
+          # url to the api of your hosted argoCD instance
+              target: https://argocd-for-dev-server-argocd-dev-instance.apps.home.myocp.net/api/v1/
+              changeOrigin: true
+              headers:
+                Cookie:
+                    $env: ARGOCD_AUTH_TOKEN
+          # Plugin: Quay
+          '/quay/api':
+            target: https://quay.io/
             headers:
-               Cookie:
-                  $env: ARGOCD_AUTH_TOKEN
+              X-Requested-With: 'XMLHttpRequest'
+              # Uncomment the following line to access a private Quay Repository using a token
+              # Authorization: 'Bearer <YOUR TOKEN>'
+            changeOrigin: true
+            secure: true
+
+          # Plugin: SonarQube
+          '/sonarqube':
+            # if not using sonarqube, assign SONARQUBE_URL to https://sonarcloud.io
+            # target: https://sonarcloud.io/api
+            target: ${SONARQUBE_URL}/api
+            allowedMethods: ['GET']
+            auth: ${SONARQUBE_TOKEN}
+
+          # Plugin: Jira
+          '/jira/api':
+            target: ${JIRA_URL}
+            headers:
+              Authorization: ${JIRA_TOKEN}
+              Accept: 'application/json'
+              Content-Type: 'application/json'
+              X-Atlassian-Token: 'no-check'
+              User-Agent: ${JIRA_USER_AGENT}
+
+          # Plugin: Jfrog Artifactory
+          '/jfrog-artifactory/api':
+            target: ${ARTIFACTORY_URL}
+            headers:
+              Authorization: Bearer ${ARTIFACTORY_TOKEN}
+            # Change to "false" in case of using self hosted artifactory instance with a self-signed certificate
+            secure: ${ARTIFACTORY_SECURE}
+
       integrations:           
         github:
           - host: github.com
