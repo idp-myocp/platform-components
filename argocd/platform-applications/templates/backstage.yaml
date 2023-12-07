@@ -33,16 +33,18 @@ spec:
           value: "{{ .Values.backstage.githubWebHookSecret }}"
         - name: "global.keycloak.backstageClient.secret"
           value: "{{ .Values.keycloak.backstageClient.secret }}"
-        - name: "global.backstage.confluence.url"
-          value: "{{ .Values.backstage.confluence.url }}"
-        - name: "global.backstage.jira.url"
-          value: "{{ .Values.backstage.jira.url }}"
+        - name: "global.backstage.atlassian.url"
+          value: "{{ .Values.backstage.atlassian.url }}"
         - name: "global.backstage.atlassian.user"
           value: "{{ .Values.backstage.atlassian.user }}"
         - name: "global.backstage.atlassian.password"
           value: "{{ .Values.backstage.atlassian.password }}"
         - name: "global.backstage.jira.token"
           value: "{{ .Values.backstage.jira.token }}"
+        - name: "global.jfrog-artifactory.url"
+          value: "{{ .Values.jfrog-artifactory.url }}"
+        - name: "global.jfrog-artifactory.github.token"
+          value: "{{ .Values.jfrog-artifactory.github.token }}"
   destination:
     server: https://kubernetes.default.svc
     namespace: developer-hub

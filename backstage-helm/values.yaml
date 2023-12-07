@@ -81,7 +81,7 @@ upstream:
         '/jira/api':
             target: "${JIRA_URL}"
             headers:
-              Authorization: ${JIRA_TOKEN}
+              Authorization: 'Bearer ${JIRA_TOKEN}''
               Accept: 'application/json'
               Content-Type: 'application/json'
               X-Atlassian-Token: 'no-check'
@@ -93,6 +93,12 @@ upstream:
             headers:
                Cookie:
                   $env: ARGOCD_AUTH_TOKEN
+        '/jfrog-artifactory/api':
+            target: '${JFROG_URL}'
+            headers:
+              Authorization: 'Bearer {{ " .Value.global.jfrog-artifactory.github.token"}}'
+            # Change to "false" in case of using self hosted artifactory instance with a self-signed certificate
+              secure: true
       integrations:           
         github:
           - host: github.com
@@ -187,17 +193,19 @@ upstream:
           key: ca.crt
           name: "{{ .Release.Name }}-db-postgresql-tls" # Should match with the name of the secret where the CA for the postgresql server is stored
     - name: CONFLUENCE_URL
-      value: "{{ .Values.global.backstage.confluence.url }} "
+      value: "{{ .Values.global.backstage.atlassian.url }} "
     - name: ARGOCD_AUTH_TOKEN
       value: "{{ .Values.global.argocd.token }}"
     - name: JIRA_URL
-      value: "{{ .Values.global.backstage.jira.url }}"
+      value: "{{ .Values.global.backstage.atlassian.url }}"
     - name: JIRA_TOKEN
       value: "Basic {{ .Values.global.backstage.jira.token }}"
     - name: CONFLUENCE_USERNAME
       value: "{{ .Values.global.backstage.atlassian.user }}"
     - name: CONFLUENCE_PASSWORD
       value: "{{ .Values.global.backstage.atlassian.password }}"
+    - name: JFROG_URL
+      value: "{{ .Values.global.jfrog-artifactory.url}}"
 
 
     extraContainers:
