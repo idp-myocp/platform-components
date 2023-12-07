@@ -81,7 +81,7 @@ upstream:
         '/jira/api':
             target: "${JIRA_URL}"
             headers:
-              Authorization: 'Bearer ${JIRA_TOKEN}''
+              Authorization: 'Bearer ${JIRA_TOKEN}'
               Accept: 'application/json'
               Content-Type: 'application/json'
               X-Atlassian-Token: 'no-check'
