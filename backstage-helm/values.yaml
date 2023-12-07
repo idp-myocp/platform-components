@@ -77,15 +77,6 @@ upstream:
                  url: https://argocd-for-dev-server-argocd-dev-instance.apps.home.myocp.net/
       proxy:
         endpoints:
-        # Plugin: Jira
-        '/jira/api':
-            target: "${JIRA_URL}"
-            headers:
-              Authorization: 'Bearer ${JIRA_TOKEN}'
-              Accept: 'application/json'
-              Content-Type: 'application/json'
-              X-Atlassian-Token: 'no-check'
-              User-Agent: "MY-UA-STRING"
         '/argocd/api':
         # url to the api of your hosted argoCD instance
             target: https://argocd-for-dev-server-argocd-dev-instance.apps.home.myocp.net/api/v1/
@@ -93,12 +84,6 @@ upstream:
             headers:
                Cookie:
                   $env: ARGOCD_AUTH_TOKEN
-        '/jfrog-artifactory/api':
-            target: '${JFROG_URL}'
-            headers:
-              Authorization: 'Bearer {{ " .Value.global.jfrog.artifactory.github.token"}}'
-            # Change to "false" in case of using self hosted artifactory instance with a self-signed certificate
-              secure: true
       integrations:           
         github:
           - host: github.com
@@ -200,13 +185,18 @@ upstream:
       value: "{{ .Values.global.backstage.atlassian.url }}"
     - name: JIRA_TOKEN
       value: "Basic {{ .Values.global.backstage.jira.token }}"
+    - name: JIRA_USER_AGENT
+      value: "MY-UA-STRING"
     - name: CONFLUENCE_USERNAME
       value: "{{ .Values.global.backstage.atlassian.user }}"
     - name: CONFLUENCE_PASSWORD
       value: "{{ .Values.global.backstage.atlassian.password }}"
-    - name: JFROG_URL
+    - name: ARTIFACTORY_URL
       value: "{{ .Values.global.jfrog.artifactory.url}}"
-
+    - name: ARTIFACTORY_TOKEN
+      value: "{{ .Values.global.jfrog.artifactory.github.token}}"
+    - name: ${ARTIFACTORY_SECURE}
+      value: true
 
     extraContainers:
     - name: "oauth2-proxy"
