@@ -51,8 +51,7 @@ spec:
       - ComplianceCheckResult
       - ComplianceRemediation
   rbac:
-    policy.csv: |
+    policy: |
       p, argocd-devops, applications, get, */*,allow
       p, cibargocd-devopsotuser, applications, sync, */*,allow
     defaultPolicy: role:admin
-  
