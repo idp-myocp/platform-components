@@ -162,6 +162,12 @@ upstream:
             production:
               clientId: "{{ .Values.global.github.clientId }}"
               clientSecret: "{{ .Values.global.github.clientSecret }}"
+      confluence:
+          wikiUrl: changeme
+          spaces: ["changeme"]
+          auth:
+            username: demo
+            password: changeme
       enabled:
          githubOrg: true
          github: true 
