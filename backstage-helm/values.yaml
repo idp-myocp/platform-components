@@ -5,6 +5,8 @@ global:
   host: ""
   argocd:
     token: changeme
+    username: changeme
+    password: changeme
   github:
     token: changeme
     appId: appid
@@ -74,7 +76,8 @@ upstream:
             - secret: u95WN24xnXu7OUQL5j1qAAVC3TF9Re6
         # Plugin: ArgoCD
       argocd:
-          baseUrl: https://argocd-for-dev-server-argocd-dev-instance.apps.home.myocp.net
+          username: "{{ .Values.global.argocd.username }}"
+          password: "{{ .Values.global.argocd.password }}"
           appLocatorMethods:
             - type: 'config'
               instances:
@@ -83,13 +86,6 @@ upstream:
                  url: https://argocd-for-dev-server-argocd-dev-instance.apps.home.myocp.net/
       proxy:
         endpoints:
-          '/argocd/api':
-          # url to the api of your hosted argoCD instance
-              target: https://argocd-for-dev-server-argocd-dev-instance.apps.home.myocp.net/api/v1/
-              changeOrigin: true
-              headers:
-                Cookie:
-                    $env: ARGOCD_AUTH_TOKEN
           # Plugin: Quay
           '/quay/api':
             target: https://quay.io/
@@ -125,7 +121,6 @@ upstream:
               Authorization: "{{ .Values.global.jfrog.artifactory.token}}"
             # Change to "false" in case of using self hosted artifactory instance with a self-signed certificate
             secure: true
-
       integrations:           
         github:
           - host: github.com
@@ -137,15 +132,6 @@ upstream:
                 webhookSecret: "{{ .Values.global.github.webhookSecret }}"
                 privateKey: |
                         ${GITHUB_PRIVATEKEY}
- 
-        # Plugin: ArgoCD
-        argocd:
-          appLocatorMethods:
-            - type: 'config'
-              instances:
-               - name: main
-                 token: "{{ .Values.global.argocd.token }}"
-                 url: https://argocd-for-dev-server-argocd-dev-instance.apps.home.myocp.net/
       catalog:
         import: 
           entityFilename: catalog-info.yaml
@@ -208,6 +194,7 @@ upstream:
          githubOrg: true
          github: true 
          keycloak: true
+         argocd: true
     extraEnvVars:
     - name: POSTGRESQL_ADMIN_PASSWORD
       valueFrom:
