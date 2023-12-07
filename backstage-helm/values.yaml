@@ -80,12 +80,12 @@ upstream:
         # Plugin: Jira
         '/jira/api':
             target: "${JIRA_URL}"
-        headers:
-           Authorization: ${JIRA_TOKEN}
-           Accept: 'application/json'
-           Content-Type: 'application/json'
-           X-Atlassian-Token: 'no-check'
-           User-Agent: "MY-UA-STRING"
+            headers:
+              Authorization: ${JIRA_TOKEN}
+              Accept: 'application/json'
+              Content-Type: 'application/json'
+              X-Atlassian-Token: 'no-check'
+              User-Agent: "MY-UA-STRING"
         '/argocd/api':
         # url to the api of your hosted argoCD instance
             target: https://argocd-for-dev-server-argocd-dev-instance.apps.home.myocp.net/api/v1/
