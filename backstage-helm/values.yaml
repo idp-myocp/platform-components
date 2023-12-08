@@ -102,7 +102,7 @@ upstream:
           '/sonarqube':
             # if not using sonarqube, assign SONARQUBE_URL to https://sonarcloud.io
             # target: https://sonarcloud.io/api
-            target: "{{ .Values.global.backstage.sonar.url }}/api"
+            target: "{{ .Values.global.backstage.sonar.url }}"
             allowedMethods: ['GET']
             auth: "{{ .Values.global.backstage.sonar.token }}"
 
