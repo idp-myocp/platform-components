@@ -76,13 +76,13 @@ upstream:
             - secret: u95WN24xnXu7OUQL5j1qAAVC3TF9Re6
         # Plugin: ArgoCD
       argocd:
-          username: "{{ .Values.global.argocd.username }}"
-          password: "{{ .Values.global.argocd.password }}"
-          appLocatorMethods:
-            - type: 'config'
-              instances:
-               - name: main
-                 url: https://argocd-for-dev-server-argocd-dev-instance.apps.home.myocp.net/
+         appLocatorMethods:
+           - instances:
+              - name: main
+                password: S9OTLfWZwGYIzRlsHKV8qCF6QNu3yo2n
+                url: https://openshift-gitops-server-openshift-gitops.apps.home.myocp.net
+                username: admin
+                type: config
       proxy:
         endpoints:
           # Plugin: Quay
