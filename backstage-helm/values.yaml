@@ -82,7 +82,7 @@ upstream:
                 password: S9OTLfWZwGYIzRlsHKV8qCF6QNu3yo2n
                 url: https://openshift-gitops-server-openshift-gitops.apps.home.myocp.net
                 username: admin
-                type: config
+             type: config
       proxy:
         endpoints:
           # Plugin: Quay
