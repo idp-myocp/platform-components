@@ -102,9 +102,9 @@ upstream:
           '/sonarqube':
             # if not using sonarqube, assign SONARQUBE_URL to https://sonarcloud.io
             # target: https://sonarcloud.io/api
-            target: "{{ .Values.global.backstage.sonar.url }}"
+            target: "{{ .Values.global.sonar.url }}"
             allowedMethods: ['GET']
-            auth: "{{ .Values.global.backstage.sonar.token }}"
+            auth: "{{ .Values.global.sonar.token }}"
 
           # Plugin: Jira
           '/jira/api':
