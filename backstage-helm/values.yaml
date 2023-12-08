@@ -14,6 +14,9 @@ global:
     clientSecret: clientSecret
     webhookUrl: webhookUrl
     webhookSecret: webhookSecret
+  sonar: 
+     token: changeme
+     url: changeme
   keycloak:
     prefixBaseUrl: "https://sso.myocp.net"
     backstageClient:
@@ -99,9 +102,9 @@ upstream:
           '/sonarqube':
             # if not using sonarqube, assign SONARQUBE_URL to https://sonarcloud.io
             # target: https://sonarcloud.io/api
-            target: ${SONARQUBE_URL}/api
+            target: "{{ .Values.global.backstage.sonar.url }}/api"
             allowedMethods: ['GET']
-            auth: ${SONARQUBE_TOKEN}
+            auth: "{{ .Values.global.backstage.sonar.token }}"
 
           # Plugin: Jira
           '/jira/api':
@@ -193,7 +196,8 @@ upstream:
          githubOrg: true
          github: true 
          keycloak: true
-         argocd: true
+         argocd: true   
+         sonarqube: true
     extraEnvVars:
     - name: POSTGRESQL_ADMIN_PASSWORD
       valueFrom:

@@ -49,6 +49,10 @@ spec:
           value: "{{ .Values.jfrog.artifactory.url }}"
         - name: "global.jfrog.artifactory.token"
           value: "{{ .Values.jfrog.artifactory.token }}"
+        - name: "global.sonar.token"
+          value: "{{ .Values.backstage.sonar.token }}"
+        - name: "global.sonar.url"
+          value: "{{ .Values.backstage.sonar.url }}"
   destination:
     server: https://kubernetes.default.svc
     namespace: developer-hub
