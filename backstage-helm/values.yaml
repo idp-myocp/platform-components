@@ -79,7 +79,7 @@ upstream:
          appLocatorMethods:
            - instances:
               - name: main
-                password: S9OTLfWZwGYIzRlsHKV8qCF6QNu3yo2n
+                password: "{{ .Values.global.argocd.password }}"
                 url: https://openshift-gitops-server-openshift-gitops.apps.home.myocp.net
                 username: admin
              type: config
