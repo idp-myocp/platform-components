@@ -204,6 +204,13 @@ upstream:
                 frequency: { minutes: 1 }
                 timeout: { minutes: 1 }
                 initialDelay: { seconds: 15 }
+          ocm:
+            env: # Key is reflected as provider ID. Defines and claims plugin instance ownership of entities
+              name: # Name that the hub cluster will assume in Backstage Catalog (in OCM this is always local-cluster which can be confusing)
+              url: # URL of the hub cluster API endpoint
+              serviceAccountToken: # Token used for querying data from the hub
+              skipTLSVerify: # Skip TLS certificate verification, defaults to false (Optional)
+              caData: # Base64-encoded CA bundle in PEM format (Optional)    
       auth:
         environment: production
         providers:
