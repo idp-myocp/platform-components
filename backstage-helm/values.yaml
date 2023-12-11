@@ -209,7 +209,7 @@ upstream:
                 initialDelay: { seconds: 15 }
           ocm:
             env: # Key is reflected as provider ID. Defines and claims plugin instance ownership of entities
-              name: local-cluster
+              name: home
               url: https://api.home.myocp.net:6443
               serviceAccountToken: "{{ .Values.global.cluster.token }}"
               skipTLSVerify: # Skip TLS certificate verification, defaults to false (Optional)
