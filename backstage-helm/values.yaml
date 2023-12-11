@@ -105,7 +105,7 @@ upstream:
                 url: https://api.home.myocp.net:6443
                 authProvider: 'serviceAccount'
                 skipTLSVerify: true
-                serviceAccountToken: ${K8S_CLUSTER_TOKEN}             
+                serviceAccountToken: "{{ .Values.global.cluster.token }}"         
       proxy:
         endpoints:
           # Plugin: Quay
