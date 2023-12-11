@@ -13,8 +13,8 @@ spec:
       parameters:
         - name: "global.clusterRouterBase"
           value: "apps.{{ .Values.clusterBaseUrl }}"
-        - name: "global.clusterToken"
-          value: "global.cluster.token"
+        - name: "global.cluster.token"
+          value: "apps.{{ .Values.clusterBaseUrl }}"
         - name: "global.argocd.username"
           value: "{{ .Values.backstage.argoUsername }}"
         - name: "global.argocd.password"
