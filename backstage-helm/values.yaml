@@ -88,7 +88,7 @@ upstream:
                 url: https://openshift-gitops-server-openshift-gitops.apps.home.myocp.net
                 username: admin
              type: config
-      eetes:
+      kubernetes:
         customResources:
           - group: 'tekton.dev'
             apiVersion: 'v1beta1'
@@ -101,7 +101,7 @@ upstream:
         clusterLocatorMethods:
           - type: 'config'
             clusters:
-              - name: myocp
+              - name: home
                 url: https://api.home.myocp.net:6443
                 authProvider: 'serviceAccount'
                 skipTLSVerify: true
