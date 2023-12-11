@@ -96,6 +96,9 @@ upstream:
           - group: 'tekton.dev'
             apiVersion: 'v1beta1'
             plural: 'taskruns'
+          - group: 'route.openshift.io'
+            apiVersion: 'v1'
+            plural: 'routes'
         serviceLocatorMethod:
           type: 'multiTenant'
         clusterLocatorMethods:
@@ -206,9 +209,9 @@ upstream:
                 initialDelay: { seconds: 15 }
           ocm:
             env: # Key is reflected as provider ID. Defines and claims plugin instance ownership of entities
-              name: # Name that the hub cluster will assume in Backstage Catalog (in OCM this is always local-cluster which can be confusing)
-              url: # URL of the hub cluster API endpoint
-              serviceAccountToken: # Token used for querying data from the hub
+              name: local-cluster
+              url: https://api.home.myocp.net:6443
+              serviceAccountToken: "{{ .Values.global.cluster.token }}"
               skipTLSVerify: # Skip TLS certificate verification, defaults to false (Optional)
               caData: # Base64-encoded CA bundle in PEM format (Optional)    
       auth:
