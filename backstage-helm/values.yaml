@@ -3,6 +3,8 @@ global:
   clusterRouterBase: app.example.com
   # -- Custom hostname shorthand, overrides `global.clusterRouterBase`, `upstream.ingress.host`, `route.host`, and url values in `upstream.backstage.appConfig`
   host: ""
+  cluster:
+    token: changeme
   argocd:
     token: changeme
     username: changeme
@@ -86,6 +88,24 @@ upstream:
                 url: https://openshift-gitops-server-openshift-gitops.apps.home.myocp.net
                 username: admin
              type: config
+      eetes:
+        customResources:
+          - group: 'tekton.dev'
+            apiVersion: 'v1beta1'
+            plural: 'pipelineruns'
+          - group: 'tekton.dev'
+            apiVersion: 'v1beta1'
+            plural: 'taskruns'
+        serviceLocatorMethod:
+          type: 'multiTenant'
+        clusterLocatorMethods:
+          - type: 'config'
+            clusters:
+              - name: myocp
+                url: https://api.home.myocp.net:6443
+                authProvider: 'serviceAccount'
+                skipTLSVerify: true
+                serviceAccountToken: ${K8S_CLUSTER_TOKEN}             
       proxy:
         endpoints:
           # Plugin: Quay
@@ -198,6 +218,7 @@ upstream:
          keycloak: true
          argocd: true   
          sonarqube: true
+         kubernetes: true
     extraEnvVars:
     - name: POSTGRESQL_ADMIN_PASSWORD
       valueFrom:
