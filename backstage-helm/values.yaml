@@ -223,7 +223,7 @@ upstream:
               clientId: "{{ .Values.global.github.clientId }}"
               clientSecret: "{{ .Values.global.github.clientSecret }}"
       confluence:
-          wikiUrl: "{{ .Values.global.backstage.atlassian.url }}/wiki"
+          wikiUrl: "https://froberge.atlassian.net/wiki"
           spaces: ["ENG"]
           auth:
             username: "{{ .Values.global.backstage.atlassian.user }}"
