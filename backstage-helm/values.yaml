@@ -105,7 +105,13 @@ upstream:
                 url: https://api.home.myocp.net:6443
                 authProvider: 'serviceAccount'
                 skipTLSVerify: true
-                serviceAccountToken: "{{ .Values.global.cluster.token }}"         
+                serviceAccountToken: "{{ .Values.global.cluster.token }}"
+      sonarqube:
+          instances:
+            - name: default
+              baseUrl: "{{ .Values.global.sonar.url }}"
+              apiKey: "{{ .Values.global.sonar.token }}"
+          
       proxy:
         endpoints:
           # Plugin: Quay
