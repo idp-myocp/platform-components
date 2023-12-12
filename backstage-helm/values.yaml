@@ -173,8 +173,7 @@ upstream:
           - type: url
             target: https://github.com/idp-myocp/backstage-showcase/blob/main/catalog-entities/all.yaml
           - type: url
-            #target: https://github.com/idp-myocp/goldenpath-template/blob/main/template-index.yaml
-            target: https://github.com/janus-api-idp/software-templates/blob/main/template-index.yaml
+            target: https://github.com/idp-myocp/goldenpath-template/blob/main/template-index.yaml
         providers:
           keycloakOrg:
             default:
