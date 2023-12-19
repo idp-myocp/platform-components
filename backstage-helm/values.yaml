@@ -76,9 +76,6 @@ upstream:
             - 'data:'
             # Allow your Jira instance for @roadiehq/backstage-plugin-jira
             - 'JIRA_URL'
-          # For lighthouse
-          frame-src:
-            - https://lighthouse-audit-service-lighthouse-audit.apps.home.myocp.net
         auth:
           keys:
             - secret: u95WN24xnXu7OUQL5j1qAAVC3TF9Re6
@@ -117,8 +114,6 @@ upstream:
             - name: default
               baseUrl: "{{ .Values.global.sonar.url }}"
               apiKey: "{{ .Values.global.sonar.token }}"
-      lighthouse:
-        baseUrl: https://lighthouse-audit-service-lighthouse-audit.apps.home.myocp.net
 
       proxy:
         endpoints:
@@ -282,6 +277,8 @@ upstream:
       value: "{{ .Values.global.jfrog.artifactory.token}}"
     - name: ARTIFACTORY_SECURE
       value: 'true'
+    - name: LIGHTHOUSE_URL
+      value: "{{ .Values.global.lighthouse.url }}"
 
     extraContainers:
     - name: "oauth2-proxy"

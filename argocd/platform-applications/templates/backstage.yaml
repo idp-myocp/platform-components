@@ -55,6 +55,9 @@ spec:
           value: "{{ .Values.backstage.sonar.token }}"
         - name: "global.sonar.url"
           value: "{{ .Values.backstage.sonar.url }}"
+        - name: "global.lighthouse.url"
+          value: "https://lighthouse-audit-service-lighthouse-audit.apps.home.myocp.net"
+
   destination:
     server: https://kubernetes.default.svc
     namespace: developer-hub
