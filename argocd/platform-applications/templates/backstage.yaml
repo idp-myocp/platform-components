@@ -57,10 +57,10 @@ spec:
           value: "{{ .Values.backstage.sonar.url }}"
         - name: "global.lighthouse.url"
           value: "{{ .Values.lighthouse.url }}"
-        - name: "global.ocm.clusters.url"
-          value: "{{ .Values.ocm.clusters.url }}"
-        - name: "global.ocm.clusters.token"
-          value: "{{ .Values.ocm.clusters.token }}"
+        - name: "global.ocm.url"
+          value: "{{ .Values.ocm.url }}"
+        - name: "global.ocm.token"
+          value: "{{ .Values.ocm.token }}"
 
 
   destination:
