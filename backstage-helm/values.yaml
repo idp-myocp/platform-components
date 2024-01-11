@@ -209,7 +209,7 @@ upstream:
                 initialDelay: { seconds: 15 }
           ocm:
             env: # Key is reflected as provider ID. Defines and claims plugin instance ownership of entities
-              name: home
+              name: all-cluster
               url: "{{ .Values.global.ocm.url }}"
               serviceAccountToken: "{{ .Values.global.ocm.token }}"
               skipTLSVerify: # Skip TLS certificate verification, defaults to false (Optional)
