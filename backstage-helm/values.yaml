@@ -210,8 +210,8 @@ upstream:
           ocm:
             env: # Key is reflected as provider ID. Defines and claims plugin instance ownership of entities
               name: home
-              url: https://api.home.myocp.net:6443
-              serviceAccountToken: "{{ .Values.global.cluster.token }}"
+              url: {{ .Values.ocm.clusters.url }}
+              serviceAccountToken: "{{ .Values.ocm.clusters.token }}"
               skipTLSVerify: # Skip TLS certificate verification, defaults to false (Optional)
               caData: # Base64-encoded CA bundle in PEM format (Optional)    
       auth:

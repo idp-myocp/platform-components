@@ -57,6 +57,11 @@ spec:
           value: "{{ .Values.backstage.sonar.url }}"
         - name: "global.lighthouse.url"
           value: "{{ .Values.lighthouse.url }}"
+        - name: "global.ocm.clusters.url"
+          value: "{{ .Values.ocm.clusters.url }}"
+        - name: "global.ocm.clusters.token"
+          value: "{{ .Values.ocm.clusters.token }}"
+
 
   destination:
     server: https://kubernetes.default.svc
