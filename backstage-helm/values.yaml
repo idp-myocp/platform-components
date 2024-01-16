@@ -152,6 +152,16 @@ upstream:
               Authorization: "Bearer {{ .Values.global.jfrog.artifactory.token}}"
               # Change to "false" in case of using self hosted artifactory instance with a self-signed certificate
               secure: true
+          '/nexus-repository-manager':
+            target: "{{ .Values.global.nexus.repository.url}}"
+            headers:
+              X-Requested-With: 'XMLHttpRequest'
+              # Uncomment the following line to access a private Nexus Repository Manager using a token
+              # Authorization: 'Bearer <YOUR TOKEN>'
+            changeOrigin: true
+            # Change to "false" in case of using self hosted Nexus Repository Manager instance with a self-signed certificate
+            secure: true
+          # Plugin: 
       integrations:           
         github:
           - host: github.com
