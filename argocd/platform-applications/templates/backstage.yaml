@@ -62,7 +62,7 @@ spec:
         - name: "global.ocm.token"
           value: "{{ .Values.ocm.token }}"
         - name: "global.nexus.repository.url"
-          value: "{{ Values.nexus.repository.url }}"
+          value: "{{ .Values.nexus.repository.url }}"
 
 
   destination:
