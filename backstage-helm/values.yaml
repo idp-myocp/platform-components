@@ -76,6 +76,9 @@ upstream:
             - 'data:'
             # Allow your Jira instance for @roadiehq/backstage-plugin-jira
             - 'JIRA_URL'
+          # For lighthouse
+          frame-src:
+            -  "{{ .Values.global.lighthouse.url }}"
         auth:
           keys:
             - secret: u95WN24xnXu7OUQL5j1qAAVC3TF9Re6
@@ -114,7 +117,8 @@ upstream:
             - name: default
               baseUrl: "{{ .Values.global.sonar.url }}"
               apiKey: "{{ .Values.global.sonar.token }}"
-
+      lighthouse:
+        baseUrl: "{{ .Values.global.lighthouse.url }}"
       proxy:
         endpoints:
           # Plugin: Quay
