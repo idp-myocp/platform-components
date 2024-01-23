@@ -126,7 +126,7 @@ upstream:
         publisher:
           type: 'awsS3'
         awsS3:
-          bucketName: backstage-claim
+          bucketName: ${BUCKET_NAME}
           endpoint: ${BUCKET_URL}
           s3ForcePathStyle: true
           credentials:
