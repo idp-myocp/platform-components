@@ -309,7 +309,7 @@ upstream:
     - name: BUCKET_NAME
       valueFrom:
          configMapKeyRef:
-          key: bucket_name
+          key: BUCKET_NAME
           name: "{{ .Release.Name }}-claim"
 
     extraContainers:
