@@ -262,6 +262,7 @@ upstream:
          sonarqube: true
          kubernetes: true
          ocm: true
+         techdocs: true
     extraEnvVars:
     - name: POSTGRESQL_ADMIN_PASSWORD
       valueFrom:
