@@ -306,6 +306,8 @@ upstream:
       value: 'true'
     - name: LIGHTHOUSE_URL
       value: "{{ .Values.global.lighthouse.url }}"
+    - name: BUCKET_URL
+      value: "https://s3-noobaa.apps.home.myocp.net:443"
     - name: BUCKET_NAME
       valueFrom:
          configMapKeyRef:
