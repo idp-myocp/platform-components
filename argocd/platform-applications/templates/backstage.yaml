@@ -63,6 +63,9 @@ spec:
           value: "{{ .Values.ocm.token }}"
         - name: "global.nexus.repository.url"
           value: "{{ .Values.nexus.repository.url }}"
+        - name: "global.aws.s3.endpoint"
+          value: "{{ .Values.aws.s3.endpoint }}"
+
 
 
   destination:
