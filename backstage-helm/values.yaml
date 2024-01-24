@@ -306,10 +306,25 @@ upstream:
       value: 'true'
     - name: LIGHTHOUSE_URL
       value: "{{ .Values.global.lighthouse.url }}"
+    - name: BUCKET_NAME
+      valueFrom:
+         configMapKeyRef:
+          key: BUCKET_NAME
+          name: "{{ .Release.Name }}-claim"
     - name: AWS_REGION
       valueFrom:
          configMapKeyRef:
           key: BUCKET_REGION
+          name: "{{ .Release.Name }}-claim"
+    - name: AWS_ACCESS_KEY_ID
+      valueFrom:
+        secretKeyRef:
+          key: AWS_ACCESS_KEY_ID
+          name: "{{ .Release.Name }}-claim"
+    - name: AWS_SECRET_ACCESS_KEY
+      valueFrom:
+        secretKeyRef:
+          key: AWS_SECRET_ACCESS_KEY
           name: "{{ .Release.Name }}-claim"
 
     extraContainers:
